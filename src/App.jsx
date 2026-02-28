@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
 import Navbar from './components/Navbar';
@@ -10,10 +10,12 @@ import Projects from './components/Projects';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import ProjectDetails from './components/ProjectDetails';
+import StarField from './components/StarField';
+import IntroStory from './components/IntroStory';
+import { ThemeProvider } from './content/ThemeContext';
 
 const GlobalScrollHandler = () => {
   const { pathname, hash } = useLocation();
-
   useEffect(() => {
     if (!hash) {
       window.scrollTo(0, 0);
@@ -21,42 +23,71 @@ const GlobalScrollHandler = () => {
       const id = hash.replace('#', '');
       const element = document.getElementById(id);
       if (element) {
-        // timeout to allow rendering
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 0);
+        setTimeout(() => element.scrollIntoView({ behavior: 'smooth' }), 0);
       }
     }
   }, [pathname, hash]);
-
   return null;
 };
 
-const MainLayout = () => (
+const MainLayout = ({ showStory, onEnterPortfolio }) => (
   <>
-    <Navbar />
-    <Home />
-    <Projects />
-    <Skills />
-    <Experience />
-    <Contact />
-    <Footer />
-    <ScrollToTop />
+    {/* Fixed full-screen 3D starfield background — always visible */}
+    <StarField />
+
+    {/* Cinematic intro story overlay */}
+    {showStory && <IntroStory onEnter={onEnterPortfolio} />}
+
+    {/* Portfolio — fade in after story */}
+    <div style={{
+      position: 'relative',
+      zIndex: 1,
+      opacity: showStory ? 0 : 1,
+      transition: 'opacity 1s ease 0.3s',
+      pointerEvents: showStory ? 'none' : 'auto',
+    }}>
+      <Navbar />
+      <Home />
+      <Projects />
+      <Skills />
+      <Experience />
+      <Contact />
+      <Footer />
+      <ScrollToTop />
+    </div>
   </>
 );
 
 const App = () => {
-  return (
-    <Router>
-      <GlobalScrollHandler />
-      <Routes>
-        {/* The main portfolio page with all sections scrollable */}
-        <Route path="/" element={<MainLayout />} />
+  // Show intro story on very first visit; skip on page refresh if already seen
+  const [showStory, setShowStory] = useState(() => {
+    return !sessionStorage.getItem('story_seen');
+  });
 
-        {/* The new individual Project Details page */}
-        <Route path="/project/:slug" element={<ProjectDetails />} />
-      </Routes>
-    </Router>
+  const handleEnterPortfolio = () => {
+    sessionStorage.setItem('story_seen', '1');
+    setShowStory(false);
+    setTimeout(() => window.scrollTo(0, 0), 100);
+  };
+
+  return (
+    <ThemeProvider>
+      <Router>
+        <GlobalScrollHandler />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MainLayout
+                showStory={showStory}
+                onEnterPortfolio={handleEnterPortfolio}
+              />
+            }
+          />
+          <Route path="/project/:slug" element={<ProjectDetails />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 };
 

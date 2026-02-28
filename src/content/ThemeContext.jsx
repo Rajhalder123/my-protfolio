@@ -3,15 +3,17 @@ import React, { createContext, useState, useEffect } from 'react';
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  // The new cosmic theme is always dark
+  const [theme] = useState('dark');
 
   useEffect(() => {
-    document.documentElement.className = theme; // add class to html tag for better Tailwind support
-  }, [theme]);
+    // Force dark class so any lingering Tailwind dark: utilities still apply
+    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light');
+  }, []);
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
+  // Keep toggleTheme as a no-op for backwards compatibility
+  const toggleTheme = () => { };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

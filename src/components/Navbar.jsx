@@ -1,110 +1,233 @@
-import React, { useContext, useState } from "react";
-import { ThemeContext } from "../content/ThemeContext";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 
+const NAV_LINKS = [
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Experience", href: "#experience" },
+  { name: "Contact", href: "#contact" },
+];
+
 const Navbar = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const location = useLocation();
 
-  const navLinks = [
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
-  ];
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  // Helper to determine the correct link path
-  const getLinkPath = (hash) => {
-    return location.pathname === '/' ? hash : `/${hash}`;
-  };
+  // Track active section on scroll
+  useEffect(() => {
+    const sections = ['projects', 'skills', 'experience', 'contact'];
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { threshold: 0.3 }
+    );
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const getLinkPath = (hash) => location.pathname === '/' ? hash : `/${hash}`;
 
   return (
-    <nav className={`fixed top-0 right-0 left-0 z-50 py-4 transition-all duration-300 border-b ${theme === 'dark' ? 'bg-slate-900 shadow-lg border-slate-800' : 'bg-white shadow-sm border-slate-200'}`}>
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          <Link
-            to="/"
-            className="inline-flex items-center text-xl font-bold uppercase no-underline tracking-widest text-slate-900 dark:text-white"
-            onClick={() => {
-              setIsOpen(false);
-              window.scrollTo(0, 0);
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0,
+      zIndex: 100,
+      padding: scrolled ? '12px 0' : '18px 0',
+      background: scrolled
+        ? 'rgba(2, 4, 8, 0.9)'
+        : 'rgba(2, 4, 8, 0.4)',
+      backdropFilter: 'blur(20px)',
+      borderBottom: scrolled
+        ? '1px solid rgba(0,212,255,0.15)'
+        : '1px solid rgba(255,255,255,0.04)',
+      boxShadow: scrolled ? '0 4px 30px rgba(0,0,0,0.5)' : 'none',
+      transition: 'all 0.3s ease',
+    }}>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+
+        {/* Logo */}
+        <Link
+          to="/"
+          onClick={() => { setIsOpen(false); window.scrollTo(0, 0); }}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: '10px',
+            textDecoration: 'none',
+          }}
+        >
+          <div style={{
+            width: '36px', height: '36px', borderRadius: '10px',
+            background: 'linear-gradient(135deg, #00d4ff, #7c3aed)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 0 15px rgba(0,212,255,0.4)',
+            fontSize: '1rem', fontWeight: 900,
+            color: 'white',
+          }}>
+            R
+          </div>
+          <span style={{
+            fontFamily: 'Orbitron, sans-serif',
+            fontSize: '0.9rem',
+            fontWeight: 800,
+            letterSpacing: '0.15em',
+            background: 'linear-gradient(135deg, #00d4ff, #7c3aed)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>
+            RAJ.DEV
+          </span>
+        </Link>
+
+        {/* Desktop links */}
+        <ul style={{ display: 'flex', gap: '4px', listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}
+          className="hidden-mobile">
+          {NAV_LINKS.map(link => {
+            const sectionId = link.href.replace('#', '');
+            const isActive = activeSection === sectionId;
+            return (
+              <li key={link.name}>
+                <a
+                  href={getLinkPath(link.href)}
+                  style={{
+                    display: 'block',
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    fontFamily: 'Orbitron, sans-serif',
+                    fontSize: '0.65rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.15em',
+                    textDecoration: 'none',
+                    textTransform: 'uppercase',
+                    color: isActive ? '#00d4ff' : '#7bb3d4',
+                    background: isActive ? 'rgba(0,212,255,0.1)' : 'transparent',
+                    border: isActive ? '1px solid rgba(0,212,255,0.3)' : '1px solid transparent',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={e => {
+                    if (!isActive) {
+                      e.currentTarget.style.color = '#e8f4ff';
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
+                    }
+                  }}
+                  onMouseLeave={e => {
+                    if (!isActive) {
+                      e.currentTarget.style.color = '#7bb3d4';
+                      e.currentTarget.style.background = 'transparent';
+                    }
+                  }}
+                >
+                  {link.name}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Right side — CTA + mobile toggle */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <a
+            href="#contact"
+            className="hidden-mobile btn-cosmic btn-primary-cosmic"
+            style={{ padding: '8px 20px', fontSize: '0.62rem' }}
+          >
+            Hire Me
+          </a>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+            style={{
+              display: 'none',
+              flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+              gap: '5px', width: '40px', height: '40px',
+              background: 'rgba(0,212,255,0.1)',
+              border: '1px solid rgba(0,212,255,0.3)',
+              borderRadius: '10px', cursor: 'pointer',
+            }}
+            className="mobile-menu-btn"
+          >
+            {[0, 1, 2].map(i => (
+              <span key={i} style={{
+                display: 'block', width: '18px', height: '2px',
+                background: '#00d4ff', borderRadius: '1px',
+                transition: 'all 0.3s',
+                transform: isOpen
+                  ? i === 0 ? 'rotate(45deg) translate(5px, 5px)'
+                    : i === 1 ? 'opacity: 0'
+                      : 'rotate(-45deg) translate(5px, -5px)'
+                  : 'none',
+                opacity: isOpen && i === 1 ? 0 : 1,
+              }} />
+            ))}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile dropdown */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            style={{
+              overflow: 'hidden',
+              borderTop: '1px solid rgba(0,212,255,0.1)',
+              background: 'rgba(2,4,8,0.95)',
+              backdropFilter: 'blur(20px)',
             }}
           >
-            PORTFOLIO
-          </Link>
-
-          <div className="flex items-center gap-4">
-            {/* Desktop Navigation */}
-            <ul className="hidden md:flex flex-row gap-6 mb-0 pl-0 list-none m-0 items-center">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    className="block py-2 text-sm font-bold text-slate-500 hover:text-emerald-500 dark:text-slate-400 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider no-underline"
-                    href={getLinkPath(link.href)}
-                  >
-                    {link.name}
-                  </a>
-                </li>
+            <div className="container" style={{ padding: '16px 24px' }}>
+              {NAV_LINKS.map(link => (
+                <a
+                  key={link.name}
+                  href={getLinkPath(link.href)}
+                  onClick={() => setIsOpen(false)}
+                  style={{
+                    display: 'block', padding: '14px 0',
+                    borderBottom: '1px solid rgba(255,255,255,0.05)',
+                    fontFamily: 'Orbitron, sans-serif',
+                    fontSize: '0.75rem', letterSpacing: '0.15em',
+                    color: '#7bb3d4', textDecoration: 'none',
+                    textTransform: 'uppercase',
+                    transition: 'color 0.2s',
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#00d4ff'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#7bb3d4'}
+                >
+                  {link.name}
+                </a>
               ))}
-            </ul>
-
-            <div className="flex items-center gap-2">
-              {/* Theme Toggle */}
-              <button
-                onClick={toggleTheme}
-                className="bg-transparent border-none text-xl cursor-pointer p-2.5 rounded-xl flex items-center justify-center transition-all text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
-                aria-label="Toggle Dark Mode"
-              >
-                {theme === 'dark' ? <i className="fas fa-sun text-yellow-500"></i> : <i className="fas fa-moon text-slate-700"></i>}
-              </button>
-
-              {/* Mobile Menu Toggle */}
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 transition-all text-slate-900 dark:text-white"
-              >
-                <div className="w-5 flex flex-col gap-1.5">
-                  <span className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-                  <span className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
-                  <span className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-                </div>
-              </button>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-        {/* Mobile Navigation Dropdown */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden overflow-hidden"
-            >
-              <ul className="flex flex-col gap-2 py-6 list-none m-0 border-t border-slate-100 dark:border-slate-800 mt-4">
-                {navLinks.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      onClick={() => setIsOpen(false)}
-                      className="flex items-center justify-between py-3 px-4 text-base font-bold text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-xl transition-all uppercase tracking-widest no-underline"
-                      href={getLinkPath(link.href)}
-                    >
-                      {link.name}
-                      <svg className="w-5 h-5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .hidden-mobile { display: none !important; }
+          .mobile-menu-btn { display: flex !important; }
+        }
+        @media (min-width: 769px) {
+          .mobile-menu-btn { display: none !important; }
+          .hidden-mobile { display: flex !important; }
+        }
+      `}</style>
     </nav>
   );
 };
