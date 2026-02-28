@@ -12,6 +12,8 @@ import ScrollToTop from './components/ScrollToTop';
 import ProjectDetails from './components/ProjectDetails';
 import StarField from './components/StarField';
 import IntroStory from './components/IntroStory';
+import RealmPortal from './components/RealmPortal';
+import SectionReveal from './components/SectionReveal';
 import { ThemeProvider } from './content/ThemeContext';
 
 const GlobalScrollHandler = () => {
@@ -32,13 +34,13 @@ const GlobalScrollHandler = () => {
 
 const MainLayout = ({ showStory, onEnterPortfolio }) => (
   <>
-    {/* Fixed full-screen 3D starfield background — always visible */}
+    {/* Fixed full-screen 3D starfield — scroll-reactive warp */}
     <StarField />
 
     {/* Cinematic intro story overlay */}
     {showStory && <IntroStory onEnter={onEnterPortfolio} />}
 
-    {/* Portfolio — fade in after story */}
+    {/* Portfolio — fades in after story */}
     <div style={{
       position: 'relative',
       zIndex: 1,
@@ -47,11 +49,34 @@ const MainLayout = ({ showStory, onEnterPortfolio }) => (
       pointerEvents: showStory ? 'none' : 'auto',
     }}>
       <Navbar />
+
+      {/* HOME — entry realm */}
       <Home />
-      <Projects />
-      <Skills />
-      <Experience />
-      <Contact />
+
+      {/* ↓ Transition: entering Projects realm */}
+      <RealmPortal realm="projects" />
+      <SectionReveal delay={0}>
+        <Projects />
+      </SectionReveal>
+
+      {/* ↓ Transition: entering Skills realm */}
+      <RealmPortal realm="skills" />
+      <SectionReveal delay={0}>
+        <Skills />
+      </SectionReveal>
+
+      {/* ↓ Transition: entering Experience realm */}
+      <RealmPortal realm="experience" />
+      <SectionReveal delay={0}>
+        <Experience />
+      </SectionReveal>
+
+      {/* ↓ Transition: entering Contact realm */}
+      <RealmPortal realm="contact" />
+      <SectionReveal delay={0}>
+        <Contact />
+      </SectionReveal>
+
       <Footer />
       <ScrollToTop />
     </div>
@@ -59,7 +84,6 @@ const MainLayout = ({ showStory, onEnterPortfolio }) => (
 );
 
 const App = () => {
-  // Show intro story on very first visit; skip on page refresh if already seen
   const [showStory, setShowStory] = useState(() => {
     return !sessionStorage.getItem('story_seen');
   });
@@ -77,12 +101,7 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={
-              <MainLayout
-                showStory={showStory}
-                onEnterPortfolio={handleEnterPortfolio}
-              />
-            }
+            element={<MainLayout showStory={showStory} onEnterPortfolio={handleEnterPortfolio} />}
           />
           <Route path="/project/:slug" element={<ProjectDetails />} />
         </Routes>
