@@ -416,6 +416,15 @@ a:hover {
 /* ========================================
    RESPONSIVE
    ======================================== */
+@media (max-width: 900px) {
+  .project-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .project-deep-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 768px) {
   .section-title-3d {
     font-size: 1.8rem;
