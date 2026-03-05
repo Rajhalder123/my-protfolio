@@ -10,6 +10,13 @@ const ProjectDetails = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
     const [project, setProject] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -43,8 +50,8 @@ const ProjectDetails = () => {
                 <Navbar />
                 <div style={{
                     minHeight: '100vh',
-                    paddingTop: '120px',
-                    paddingBottom: '60px',
+                    paddingTop: isMobile ? '90px' : '120px',
+                    paddingBottom: isMobile ? '40px' : '60px',
                     background: 'transparent',
                 }}>
                     <div className="container" style={{ maxWidth: '1100px' }}>
@@ -68,7 +75,7 @@ const ProjectDetails = () => {
                                 fontSize: '0.75rem',
                                 letterSpacing: '0.15em',
                                 cursor: 'pointer',
-                                marginBottom: '48px',
+                                marginBottom: isMobile ? '32px' : '48px',
                                 transition: 'all 0.3s ease',
                             }}
                             onMouseEnter={e => {
@@ -96,10 +103,10 @@ const ProjectDetails = () => {
                             className="project-hero-grid"
                             style={{
                                 display: 'grid',
-                                gridTemplateColumns: '1fr 1fr',
-                                gap: '48px',
+                                gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                                gap: isMobile ? '28px' : '48px',
                                 alignItems: 'center',
-                                marginBottom: '80px',
+                                marginBottom: isMobile ? '48px' : '80px',
                             }}
                         >
                             {/* Text Content */}
@@ -216,14 +223,14 @@ const ProjectDetails = () => {
                         <div style={{
                             height: '1px',
                             background: 'linear-gradient(to right, transparent, rgba(0,212,255,0.4), rgba(124,58,237,0.4), transparent)',
-                            marginBottom: '80px',
+                            marginBottom: isMobile ? '48px' : '80px',
                         }} />
 
                         {/* ——— Deep Dive Section ——— */}
                         <div className="project-deep-grid" style={{
                             display: 'grid',
-                            gridTemplateColumns: '2fr 1fr',
-                            gap: '48px',
+                            gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr',
+                            gap: isMobile ? '28px' : '48px',
                         }}>
                             {/* Left Column: Challenge & Solution */}
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
@@ -258,7 +265,7 @@ const ProjectDetails = () => {
                                         The Challenge
                                     </h3>
                                     <div style={{
-                                        padding: '28px',
+                                        padding: isMobile ? '20px' : '28px',
                                         borderRadius: '16px',
                                         background: 'rgba(5,15,35,0.7)',
                                         backdropFilter: 'blur(20px)',
@@ -311,7 +318,7 @@ const ProjectDetails = () => {
                                         The Solution
                                     </h3>
                                     <div style={{
-                                        padding: '28px',
+                                        padding: isMobile ? '20px' : '28px',
                                         borderRadius: '16px',
                                         background: 'rgba(5,15,35,0.7)',
                                         backdropFilter: 'blur(20px)',
@@ -345,7 +352,7 @@ const ProjectDetails = () => {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: 0.15 }}
                                     style={{
-                                        padding: '28px',
+                                        padding: isMobile ? '20px' : '28px',
                                         borderRadius: '16px',
                                         background: 'rgba(5,15,35,0.7)',
                                         backdropFilter: 'blur(20px)',
@@ -402,7 +409,7 @@ const ProjectDetails = () => {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: 0.25 }}
                                     style={{
-                                        padding: '28px',
+                                        padding: isMobile ? '20px' : '28px',
                                         borderRadius: '16px',
                                         background: 'rgba(5,15,35,0.7)',
                                         backdropFilter: 'blur(20px)',

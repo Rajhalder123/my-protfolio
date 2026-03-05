@@ -93,7 +93,7 @@ const PortalInner = ({ d }) => {
             </div>
 
             {[-1, 1].map(side => (
-                <div key={side} style={{
+                <div key={side} className="realm-side-deco" style={{
                     position: 'absolute',
                     top: '50%',
                     transform: 'translateY(-50%)',

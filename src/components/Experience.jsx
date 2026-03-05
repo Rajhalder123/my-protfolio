@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SectionNarrator from "./SectionNarrator";
 import experienceData from "./data/experience.json";
 
 const CHAPTER_ICONS = ["🚀", "🤖", "🎨", "⚡"];
 const CHAPTER_COLORS = ['#00d4ff', '#7c3aed', '#10ffa0', '#ffd700'];
 
-function ChapterCard({ exp, index }) {
+function ChapterCard({ exp, index, isMobile }) {
   const cardRef = useRef(null);
   const color = CHAPTER_COLORS[index % CHAPTER_COLORS.length];
 
@@ -28,18 +28,18 @@ function ChapterCard({ exp, index }) {
   return (
     <div
       ref={cardRef}
-      className="chapter-hidden"
+      className="chapter-hidden experience-chapter-card"
       style={{
         display: 'grid',
-        gridTemplateColumns: index % 2 === 0 ? '1fr auto 1fr' : '1fr auto 1fr',
-        gap: '32px',
-        alignItems: 'center',
-        marginBottom: '60px',
+        gridTemplateColumns: isMobile ? '1fr' : (index % 2 === 0 ? '1fr auto 1fr' : '1fr auto 1fr'),
+        gap: isMobile ? '16px' : '32px',
+        alignItems: isMobile ? 'stretch' : 'center',
+        marginBottom: isMobile ? '40px' : '60px',
         transitionDelay: `${index * 0.1}s`,
       }}
     >
       {/* Date (left on even, empty on odd) */}
-      <div style={{ textAlign: index % 2 === 0 ? 'right' : 'left', order: index % 2 === 0 ? 0 : 2 }}>
+      <div style={{ textAlign: isMobile ? 'left' : (index % 2 === 0 ? 'right' : 'left'), order: isMobile ? 1 : (index % 2 === 0 ? 0 : 2) }}>
         {index % 2 === 0 ? (
           <div style={{
             display: 'inline-block',
@@ -58,9 +58,9 @@ function ChapterCard({ exp, index }) {
             backdropFilter: 'blur(20px)',
             border: `1px solid ${color}33`,
             borderRadius: '20px',
-            padding: '24px',
+            padding: isMobile ? '20px' : '24px',
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: isMobile ? '12px' : '16px' }}>
               <span style={{ fontSize: '1.8rem' }}>{CHAPTER_ICONS[index % CHAPTER_ICONS.length]}</span>
               <div>
                 <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.65rem', color: color, letterSpacing: '0.2em', marginBottom: '4px' }}>
@@ -84,7 +84,7 @@ function ChapterCard({ exp, index }) {
       </div>
 
       {/* Center node */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+      <div className="experience-center-node" style={{ display: 'flex', flexDirection: isMobile ? 'row' : 'column', alignItems: 'center', position: 'relative', order: isMobile ? 0 : undefined, gap: isMobile ? '12px' : '0' }}>
         <div style={{
           width: '52px', height: '52px',
           borderRadius: '50%',
@@ -98,8 +98,8 @@ function ChapterCard({ exp, index }) {
           {CHAPTER_ICONS[index % CHAPTER_ICONS.length]}
         </div>
         {/* Vertical line */}
-        {index < experienceData.length - 1 && (
-          <div style={{
+        {!isMobile && index < experienceData.length - 1 && (
+          <div className="experience-timeline-line" style={{
             position: 'absolute',
             top: '52px', bottom: '-60px',
             width: '2px',
@@ -109,16 +109,16 @@ function ChapterCard({ exp, index }) {
       </div>
 
       {/* Card content (right on even, date on odd) */}
-      <div style={{ order: index % 2 === 0 ? 2 : 0 }}>
+      <div style={{ order: isMobile ? 2 : (index % 2 === 0 ? 2 : 0) }}>
         {index % 2 === 0 ? (
           <div style={{
             background: 'rgba(5,15,35,0.7)',
             backdropFilter: 'blur(20px)',
             border: `1px solid ${color}33`,
             borderRadius: '20px',
-            padding: '24px',
+            padding: isMobile ? '20px' : '24px',
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: isMobile ? '12px' : '16px' }}>
               <span style={{ fontSize: '1.8rem' }}>{CHAPTER_ICONS[index % CHAPTER_ICONS.length]}</span>
               <div>
                 <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.65rem', color: color, letterSpacing: '0.2em', marginBottom: '4px' }}>
@@ -157,12 +157,20 @@ function ChapterCard({ exp, index }) {
 }
 
 const Experience = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <section id="experience" style={{ position: 'relative', padding: '100px 0', zIndex: 1 }}>
+    <section id="experience" style={{ position: 'relative', padding: isMobile ? '60px 0' : '100px 0', zIndex: 1, overflow: 'hidden' }}>
       {/* Glow */}
       <div style={{
         position: 'absolute', top: '20%', right: '-100px',
-        width: '400px', height: '400px',
+        width: '400px', height: '400px', maxWidth: '100vw',
         background: 'radial-gradient(circle, rgba(16,255,160,0.06) 0%, transparent 70%)',
         pointerEvents: 'none',
       }} />
@@ -187,7 +195,7 @@ const Experience = () => {
         {/* Timeline */}
         <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative' }}>
           {experienceData.map((exp, index) => (
-            <ChapterCard key={exp.id} exp={exp} index={index} />
+            <ChapterCard key={exp.id} exp={exp} index={index} isMobile={isMobile} />
           ))}
         </div>
       </div>

@@ -140,8 +140,15 @@ const IntroStory = ({ onEnter }) => {
     const [bodyVisible, setBodyVisible] = useState(false);
     const [exiting, setExiting] = useState(false);
     const [slideIn, setSlideIn] = useState(true);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
     const slide = STORY_SLIDES[current];
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 480);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const goToNext = useCallback(() => {
         if (current >= STORY_SLIDES.length - 1) {
@@ -204,10 +211,10 @@ const IntroStory = ({ onEnter }) => {
 
             {/* Corner brackets */}
             {[
-                { top: 20, left: 20, br: 'none', bl: '2px solid', bt: '2px solid', bb: 'none' },
-                { top: 20, right: 20, bl: 'none', br: '2px solid', bt: '2px solid', bb: 'none' },
-                { bottom: 20, left: 20, br: 'none', bl: '2px solid', bt: 'none', bb: '2px solid' },
-                { bottom: 20, right: 20, bl: 'none', br: '2px solid', bt: 'none', bb: '2px solid' },
+                { top: isMobile ? 10 : 20, left: isMobile ? 10 : 20, br: 'none', bl: '2px solid', bt: '2px solid', bb: 'none' },
+                { top: isMobile ? 10 : 20, right: isMobile ? 10 : 20, bl: 'none', br: '2px solid', bt: '2px solid', bb: 'none' },
+                { bottom: isMobile ? 10 : 20, left: isMobile ? 10 : 20, br: 'none', bl: '2px solid', bt: 'none', bb: '2px solid' },
+                { bottom: isMobile ? 10 : 20, right: isMobile ? 10 : 20, bl: 'none', br: '2px solid', bt: 'none', bb: '2px solid' },
             ].map((corner, i) => (
                 <div key={i} style={{
                     position: 'absolute',
@@ -340,7 +347,7 @@ const IntroStory = ({ onEnter }) => {
                             <button
                                 onClick={goToNext}
                                 style={{
-                                    padding: '16px 48px',
+                                    padding: isMobile ? '14px 32px' : '16px 48px',
                                     background: `linear-gradient(135deg, ${slide.color}, #7c3aed)`,
                                     border: 'none',
                                     borderRadius: '14px',

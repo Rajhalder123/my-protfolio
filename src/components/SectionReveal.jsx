@@ -33,7 +33,7 @@ const SectionReveal = ({ children }) => {
             style={{
                 perspective: '1400px',
                 perspectiveOrigin: '50% 40%',
-                overflow: 'visible',
+                overflowX: 'hidden',
             }}
         >
             {/* The actual content zooms out from "far away" — no Y movement */}

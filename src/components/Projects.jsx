@@ -1,11 +1,11 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import projectData from "./data/Projects.json";
 import { Link } from "react-router-dom";
 import SectionNarrator from "./SectionNarrator";
 
 const TAGS = ["All", "AI & Full-Stack", "MERN Stack", "React & API", "Full-Stack", "Frontend UI", "React & Framer", "React & Firebase", "React Utility"];
 
-function TiltCard({ project, index }) {
+function TiltCard({ project, index, isMobile }) {
   const cardRef = useRef(null);
 
   const handleMouseMove = useCallback((e) => {
@@ -25,7 +25,6 @@ function TiltCard({ project, index }) {
     card.style.boxShadow = '0 8px 32px rgba(0,0,0,0.4)';
   }, []);
 
-  const isExternal = !project.slug;
   const hasSlug = !!project.slug;
 
   return (
@@ -63,20 +62,22 @@ function TiltCard({ project, index }) {
           position: 'absolute', inset: 0,
           background: 'linear-gradient(to top, rgba(5,15,35,0.9) 0%, transparent 60%)',
         }} />
-        {/* Tag */}
-        <div style={{
-          position: 'absolute', top: '12px', right: '12px',
-          background: 'rgba(0,212,255,0.15)',
-          border: '1px solid rgba(0,212,255,0.4)',
-          borderRadius: '999px',
-          padding: '4px 12px',
-          fontFamily: 'JetBrains Mono, monospace',
-          fontSize: '0.65rem',
-          color: '#00d4ff',
-          letterSpacing: '0.1em',
-        }}>
-          {project.tag}
-        </div>
+        {/* Tag — hidden on mobile to prevent overflow */}
+        {!isMobile && (
+          <div style={{
+            position: 'absolute', top: '12px', right: '12px',
+            background: 'rgba(0,212,255,0.15)',
+            border: '1px solid rgba(0,212,255,0.4)',
+            borderRadius: '999px',
+            padding: '4px 12px',
+            fontFamily: 'JetBrains Mono, monospace',
+            fontSize: '0.65rem',
+            color: '#00d4ff',
+            letterSpacing: '0.1em',
+          }}>
+            {project.tag}
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -180,6 +181,13 @@ function TiltCard({ project, index }) {
 const Projects = () => {
   const [showAll, setShowAll] = useState(false);
   const [activeTag, setActiveTag] = useState("All");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 480);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const filtered = projectData.filter(p => activeTag === "All" || p.tag === activeTag);
   const visible = showAll ? filtered : filtered.slice(0, 6);
@@ -189,14 +197,15 @@ const Projects = () => {
       id="projects"
       style={{
         position: 'relative',
-        padding: '100px 0',
+        padding: isMobile ? '60px 0' : '100px 0',
         zIndex: 1,
+        overflow: 'hidden',
       }}
     >
       {/* Section glow */}
       <div style={{
         position: 'absolute', top: '10%', left: '50%', transform: 'translateX(-50%)',
-        width: '600px', height: '600px',
+        width: '600px', height: '600px', maxWidth: '100vw',
         background: 'radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)',
         pointerEvents: 'none',
       }} />
@@ -221,21 +230,21 @@ const Projects = () => {
 
         {/* Filter Tags */}
         <div style={{
-          display: 'flex', flexWrap: 'wrap', gap: '10px',
-          justifyContent: 'center', marginBottom: '48px',
+          display: 'flex', flexWrap: 'wrap', gap: isMobile ? '6px' : '10px',
+          justifyContent: 'center', marginBottom: isMobile ? '32px' : '48px',
         }}>
           {TAGS.map(tag => (
             <button
               key={tag}
               onClick={() => { setActiveTag(tag); setShowAll(false); }}
               style={{
-                padding: '7px 18px',
+                padding: isMobile ? '5px 12px' : '7px 18px',
                 borderRadius: '999px',
                 border: activeTag === tag ? '1px solid #00d4ff' : '1px solid rgba(255,255,255,0.1)',
                 background: activeTag === tag ? 'rgba(0,212,255,0.15)' : 'rgba(255,255,255,0.04)',
                 color: activeTag === tag ? '#00d4ff' : '#7bb3d4',
                 fontFamily: 'JetBrains Mono, monospace',
-                fontSize: '0.7rem',
+                fontSize: isMobile ? '0.6rem' : '0.7rem',
                 letterSpacing: '0.1em',
                 cursor: 'pointer',
                 transition: 'all 0.25s',
@@ -250,11 +259,11 @@ const Projects = () => {
         {/* Cards Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: '28px',
+          gridTemplateColumns: `repeat(auto-fill, minmax(min(100%, 320px), 1fr))`,
+          gap: isMobile ? '20px' : '28px',
         }}>
           {visible.map((project, i) => (
-            <TiltCard key={project.key} project={project} index={i} />
+            <TiltCard key={project.key} project={project} index={i} isMobile={isMobile} />
           ))}
         </div>
 

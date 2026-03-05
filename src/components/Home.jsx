@@ -50,6 +50,13 @@ function ParallaxDepthLayer({ speed, children, style }) {
 const Home = () => {
   const typedText = useTypingEffect(TYPED_WORDS);
   const [visitorCount] = useState(1101);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Scroll parallax refs for different depth layers
   const textRef = useScrollParallax(0.25, 'up');   // text moves up slowly
@@ -86,7 +93,7 @@ const Home = () => {
       {/* Layer 3 (far) — barely moves */}
       <ParallaxDepthLayer speed={0.05} style={{ inset: 0, zIndex: 0, pointerEvents: 'none' }}>
         <div style={{
-          position: 'absolute', width: '700px', height: '700px',
+          position: 'absolute', width: '700px', height: '700px', maxWidth: '100vw',
           borderRadius: '50%',
           background: 'rgba(0,212,255,0.07)', filter: 'blur(80px)',
           top: '-200px', left: '-150px',
@@ -96,7 +103,7 @@ const Home = () => {
       {/* Layer 2 (mid) */}
       <ParallaxDepthLayer speed={0.15} style={{ inset: 0, zIndex: 0, pointerEvents: 'none' }}>
         <div style={{
-          position: 'absolute', width: '500px', height: '500px',
+          position: 'absolute', width: '500px', height: '500px', maxWidth: '100vw',
           borderRadius: '50%',
           background: 'rgba(124,58,237,0.09)', filter: 'blur(60px)',
           bottom: '-100px', right: '10%',
@@ -113,13 +120,13 @@ const Home = () => {
       </ParallaxDepthLayer>
 
       {/* ——— Main content ——— */}
-      <div className="container" style={{ position: 'relative', zIndex: 2, padding: '100px 24px 60px' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '40px' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2, padding: isMobile ? '90px 16px 40px' : '100px 24px 60px' }}>
+        <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', flexWrap: 'wrap', alignItems: 'center', gap: isMobile ? '24px' : '40px', justifyContent: isMobile ? 'center' : 'flex-start' }}>
 
           {/* LEFT — Text Content with scroll parallax */}
           <div
             ref={textRef}
-            style={{ flex: '1 1 400px', minWidth: 300 }}
+            style={{ flex: isMobile ? 'unset' : '1 1 280px', width: isMobile ? '100%' : undefined, minWidth: 0, maxWidth: '100%', textAlign: isMobile ? 'center' : 'left', display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'center' : 'flex-start' }}
           >
             {/* Badge — drifts at own speed */}
             <div
@@ -143,8 +150,8 @@ const Home = () => {
             <h1
               style={{
                 fontFamily: 'Orbitron, sans-serif',
-                fontSize: 'clamp(2.2rem, 5vw, 4rem)',
-                fontWeight: 900, lineHeight: 1.1, marginBottom: '16px',
+                fontSize: 'clamp(1.8rem, 5vw, 4rem)',
+                fontWeight: 900, lineHeight: 1.1, marginBottom: isMobile ? '12px' : '16px',
                 transform: `translate(${mouse.x * -14}px, ${mouse.y * -8}px)`,
                 transition: 'transform 0.2s ease-out',
               }}
@@ -156,34 +163,34 @@ const Home = () => {
             </h1>
 
             {/* Typing Effect */}
-            <div style={{ marginBottom: '24px', minHeight: '2.5rem', transform: `translate(${mouse.x * -10}px, ${mouse.y * -6}px)`, transition: 'transform 0.18s ease-out' }}>
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '1.1rem', color: '#00d4ff' }}>{`> `}</span>
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '1.1rem', color: '#10ffa0' }}>{typedText}</span>
+            <div style={{ marginBottom: isMobile ? '16px' : '24px', minHeight: '2.5rem', transform: isMobile ? 'none' : `translate(${mouse.x * -10}px, ${mouse.y * -6}px)`, transition: 'transform 0.18s ease-out' }}>
+              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: isMobile ? '0.9rem' : '1.1rem', color: '#00d4ff' }}>{`> `}</span>
+              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: isMobile ? '0.9rem' : '1.1rem', color: '#10ffa0' }}>{typedText}</span>
               <span style={{ display: 'inline-block', width: '2px', height: '1.2em', background: '#00d4ff', marginLeft: '2px', verticalAlign: 'middle', animation: 'typing-cursor 1s step-end infinite' }} />
             </div>
 
             {/* Description */}
-            <p style={{ color: '#7bb3d4', fontSize: '1rem', lineHeight: 1.8, maxWidth: '520px', marginBottom: '36px', transform: `translate(${mouse.x * -6}px, ${mouse.y * -4}px)`, transition: 'transform 0.22s ease-out' }}>
+            <p style={{ color: '#7bb3d4', fontSize: isMobile ? '0.9rem' : '1rem', lineHeight: 1.8, maxWidth: '520px', marginLeft: isMobile ? 'auto' : undefined, marginRight: isMobile ? 'auto' : undefined, marginBottom: isMobile ? '24px' : '36px', transform: isMobile ? 'none' : `translate(${mouse.x * -6}px, ${mouse.y * -4}px)`, transition: 'transform 0.22s ease-out' }}>
               I design and engineer scalable, production-ready web applications
               using the Full Stack and integrate AI-driven features
               to build intelligent digital solutions.
             </p>
 
             {/* CTA Buttons */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginBottom: '36px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '10px' : '16px', marginBottom: isMobile ? '24px' : '36px', justifyContent: isMobile ? 'center' : 'flex-start' }}>
               <a href="#projects" className="btn-cosmic btn-primary-cosmic"><span>🚀</span> View Projects</a>
               <a href={resume} download className="btn-cosmic btn-outline-cosmic"><span>📄</span> Download Resume</a>
             </div>
 
             {/* Stats row */}
-            <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: isMobile ? '20px' : '32px', flexWrap: 'wrap', justifyContent: 'center' }}>
               {[
                 { label: 'Projects Shipped', value: '8+' },
                 { label: 'Tech Stack', value: '15+' },
                 { label: 'Visitors', value: `${visitorCount}+` },
               ].map(stat => (
                 <div key={stat.label}>
-                  <div style={{ fontFamily: 'Orbitron, sans-serif', fontSize: '1.8rem', fontWeight: 800, background: 'linear-gradient(135deg, #00d4ff, #10ffa0)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                  <div style={{ fontFamily: 'Orbitron, sans-serif', fontSize: isMobile ? '1.4rem' : '1.8rem', fontWeight: 800, background: 'linear-gradient(135deg, #00d4ff, #10ffa0)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                     {stat.value}
                   </div>
                   <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.65rem', color: '#4a7a9b', letterSpacing: '0.1em' }}>
@@ -198,9 +205,10 @@ const Home = () => {
           <div
             ref={orbRef}
             style={{
-              flex: '1 1 380px', minWidth: 300,
+              flex: isMobile ? '1 1 100%' : '1 1 380px', minWidth: 0,
               display: 'flex', justifyContent: 'center',
-              transform: `translate(${mouse.x * 20}px, ${mouse.y * 12}px)`,
+              maxWidth: isMobile ? '100%' : undefined,
+              transform: isMobile ? 'none' : `translate(${mouse.x * 20}px, ${mouse.y * 12}px)`,
               transition: 'transform 0.12s ease-out',
             }}
           >

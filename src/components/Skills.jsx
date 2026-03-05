@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SectionNarrator from "./SectionNarrator";
 import skillsData from "./data/skills.json";
 
@@ -84,17 +84,24 @@ const Skills = () => {
   const ring1 = skillsData.slice(0, 5);
   const ring2 = skillsData.slice(5, 11);
   const ring3 = skillsData.slice(11);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <section
       id="skills"
-      style={{ position: 'relative', padding: '100px 0', zIndex: 1 }}
+      style={{ position: 'relative', padding: isMobile ? '60px 0' : '100px 0', zIndex: 1, overflow: 'hidden' }}
     >
       {/* Ambient glow */}
       <div style={{
         position: 'absolute', top: '50%', left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: '800px', height: '800px',
+        width: '800px', height: '800px', maxWidth: '100vw',
         background: 'radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%)',
         pointerEvents: 'none',
       }} />
@@ -116,14 +123,14 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Solar System */}
-        <div style={{
+        {/* Solar System — desktop only */}
+        <div className="skills-orbit-container" style={{
           position: 'relative',
           width: '100%',
           maxWidth: '700px',
           margin: '0 auto',
           aspectRatio: '1',
-          display: 'flex',
+          display: isMobile ? 'none' : 'flex',
           alignItems: 'center',
           justifyContent: 'center',
         }}>
@@ -144,6 +151,50 @@ const Skills = () => {
           <OrbitRing radius={130} speed={20} skills={ring1} ringIndex={0} />
           <OrbitRing radius={220} speed={35} skills={ring2} ringIndex={1} />
           <OrbitRing radius={310} speed={50} skills={ring3} ringIndex={2} />
+        </div>
+
+        {/* Mobile skills grid — shown on mobile only */}
+        <div className="skills-mobile-grid" style={{
+          display: isMobile ? 'flex' : 'none',
+          flexWrap: 'wrap',
+          gap: '12px',
+          justifyContent: 'center',
+          maxWidth: '500px',
+          margin: '0 auto 32px',
+        }}>
+          {skillsData.map((skill, i) => {
+            const color = SKILL_COLORS[i % SKILL_COLORS.length];
+            return (
+              <div key={skill.id} style={{
+                display: 'flex', flexDirection: 'column',
+                alignItems: 'center', justifyContent: 'center',
+                gap: '6px',
+                width: '70px', height: '70px',
+                borderRadius: '14px',
+                background: 'rgba(5,15,35,0.9)',
+                border: `1px solid ${color}44`,
+                boxShadow: `0 0 10px ${color}22`,
+                transition: 'all 0.3s',
+              }}>
+                <img
+                  src={skill.imageSrc}
+                  alt={skill.title}
+                  style={{ width: '28px', height: '28px', objectFit: 'contain' }}
+                  onError={e => { e.target.style.display = 'none'; }}
+                />
+                <span style={{
+                  fontSize: '0.5rem',
+                  color: color,
+                  fontFamily: 'JetBrains Mono, monospace',
+                  fontWeight: 600,
+                  textAlign: 'center',
+                  lineHeight: 1,
+                }}>
+                  {skill.title}
+                </span>
+              </div>
+            );
+          })}
         </div>
 
         {/* Legend */}

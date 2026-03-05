@@ -47,6 +47,8 @@ const MainLayout = ({ showStory, onEnterPortfolio }) => (
       opacity: showStory ? 0 : 1,
       transition: 'opacity 1s ease 0.3s',
       pointerEvents: showStory ? 'none' : 'auto',
+      overflowX: 'hidden',
+      maxWidth: '100vw',
     }}>
       <Navbar />
 

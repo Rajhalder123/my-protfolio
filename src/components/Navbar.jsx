@@ -13,7 +13,14 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
@@ -92,88 +99,92 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop links */}
-        <ul style={{ display: 'flex', gap: '4px', listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}
-          className="hidden-mobile">
-          {NAV_LINKS.map(link => {
-            const sectionId = link.href.replace('#', '');
-            const isActive = activeSection === sectionId;
-            return (
-              <li key={link.name}>
-                <a
-                  href={getLinkPath(link.href)}
-                  style={{
-                    display: 'block',
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    fontFamily: 'Orbitron, sans-serif',
-                    fontSize: '0.65rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.15em',
-                    textDecoration: 'none',
-                    textTransform: 'uppercase',
-                    color: isActive ? '#00d4ff' : '#7bb3d4',
-                    background: isActive ? 'rgba(0,212,255,0.1)' : 'transparent',
-                    border: isActive ? '1px solid rgba(0,212,255,0.3)' : '1px solid transparent',
-                    transition: 'all 0.2s',
-                  }}
-                  onMouseEnter={e => {
-                    if (!isActive) {
-                      e.currentTarget.style.color = '#e8f4ff';
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
-                    }
-                  }}
-                  onMouseLeave={e => {
-                    if (!isActive) {
-                      e.currentTarget.style.color = '#7bb3d4';
-                      e.currentTarget.style.background = 'transparent';
-                    }
-                  }}
-                >
-                  {link.name}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+        {!isMobile && (
+          <ul style={{ display: 'flex', gap: '4px', listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}>
+            {NAV_LINKS.map(link => {
+              const sectionId = link.href.replace('#', '');
+              const isActive = activeSection === sectionId;
+              return (
+                <li key={link.name}>
+                  <a
+                    href={getLinkPath(link.href)}
+                    style={{
+                      display: 'block',
+                      padding: '8px 16px',
+                      borderRadius: '8px',
+                      fontFamily: 'Orbitron, sans-serif',
+                      fontSize: '0.65rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.15em',
+                      textDecoration: 'none',
+                      textTransform: 'uppercase',
+                      color: isActive ? '#00d4ff' : '#7bb3d4',
+                      background: isActive ? 'rgba(0,212,255,0.1)' : 'transparent',
+                      border: isActive ? '1px solid rgba(0,212,255,0.3)' : '1px solid transparent',
+                      transition: 'all 0.2s',
+                    }}
+                    onMouseEnter={e => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = '#e8f4ff';
+                        e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
+                      }
+                    }}
+                    onMouseLeave={e => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = '#7bb3d4';
+                        e.currentTarget.style.background = 'transparent';
+                      }
+                    }}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        )}
 
         {/* Right side — CTA + mobile toggle */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <a
-            href="#contact"
-            className="hidden-mobile btn-cosmic btn-primary-cosmic"
-            style={{ padding: '8px 20px', fontSize: '0.62rem' }}
-          >
-            Hire Me
-          </a>
+          {!isMobile && (
+            <a
+              href="#contact"
+              className="btn-cosmic btn-primary-cosmic"
+              style={{ padding: '8px 20px', fontSize: '0.62rem' }}
+            >
+              Hire Me
+            </a>
+          )}
 
           {/* Mobile hamburger */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-            style={{
-              display: 'none',
-              flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
-              gap: '5px', width: '40px', height: '40px',
-              background: 'rgba(0,212,255,0.1)',
-              border: '1px solid rgba(0,212,255,0.3)',
-              borderRadius: '10px', cursor: 'pointer',
-            }}
-            className="mobile-menu-btn"
-          >
-            {[0, 1, 2].map(i => (
-              <span key={i} style={{
-                display: 'block', width: '18px', height: '2px',
-                background: '#00d4ff', borderRadius: '1px',
-                transition: 'all 0.3s',
-                transform: isOpen
-                  ? i === 0 ? 'rotate(45deg) translate(5px, 5px)'
-                    : i === 1 ? 'opacity: 0'
-                      : 'rotate(-45deg) translate(5px, -5px)'
-                  : 'none',
-                opacity: isOpen && i === 1 ? 0 : 1,
-              }} />
-            ))}
-          </button>
+          {isMobile && (
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+              style={{
+                display: 'flex',
+                flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+                gap: '5px', width: '40px', height: '40px',
+                background: 'rgba(0,212,255,0.1)',
+                border: '1px solid rgba(0,212,255,0.3)',
+                borderRadius: '10px', cursor: 'pointer',
+              }}
+            >
+              {[0, 1, 2].map(i => (
+                <span key={i} style={{
+                  display: 'block', width: '18px', height: '2px',
+                  background: '#00d4ff', borderRadius: '1px',
+                  transition: 'all 0.3s',
+                  transform: isOpen
+                    ? i === 0 ? 'rotate(45deg) translate(5px, 5px)'
+                      : i === 1 ? 'opacity: 0'
+                        : 'rotate(-45deg) translate(5px, -5px)'
+                    : 'none',
+                  opacity: isOpen && i === 1 ? 0 : 1,
+                }} />
+              ))}
+            </button>
+          )}
         </div>
       </div>
 
@@ -218,16 +229,7 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-          .mobile-menu-btn { display: flex !important; }
-        }
-        @media (min-width: 769px) {
-          .mobile-menu-btn { display: none !important; }
-          .hidden-mobile { display: flex !important; }
-        }
-      `}</style>
+
     </nav>
   );
 };

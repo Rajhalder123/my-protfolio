@@ -1,0 +1,7 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /static/js/*.map
+
+# Sitemap
+# Sitemap: https://rajhalder.dev/sitemap.xml

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EmailSender from "./EmailSender";
 import SectionNarrator from "./SectionNarrator";
 
@@ -10,12 +10,20 @@ const SOCIALS = [
 ];
 
 const Contact = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 480);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <section id="contact" style={{ position: 'relative', padding: '100px 0 60px', zIndex: 1 }}>
+    <section id="contact" style={{ position: 'relative', padding: isMobile ? '60px 0 40px' : '100px 0 60px', zIndex: 1, overflow: 'hidden' }}>
       {/* Background glow */}
       <div style={{
         position: 'absolute', bottom: '0', left: '50%', transform: 'translateX(-50%)',
-        width: '800px', height: '400px',
+        width: '800px', height: '400px', maxWidth: '100vw',
         background: 'radial-gradient(ellipse, rgba(124,58,237,0.1) 0%, transparent 70%)',
         pointerEvents: 'none',
       }} />
@@ -43,15 +51,15 @@ const Contact = () => {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px', maxWidth: '1000px', margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, 300px), 1fr))`, gap: isMobile ? '24px' : '40px', maxWidth: '1000px', margin: '0 auto' }}>
 
           {/* Left: Info panel */}
           <div style={{
             background: 'rgba(5,15,35,0.7)',
             backdropFilter: 'blur(20px)',
             border: '1px solid rgba(0,212,255,0.15)',
-            borderRadius: '24px',
-            padding: '40px 32px',
+            borderRadius: isMobile ? '16px' : '24px',
+            padding: isMobile ? '24px 16px' : '40px 32px',
             display: 'flex',
             flexDirection: 'column',
             gap: '32px',
@@ -143,8 +151,8 @@ const Contact = () => {
             background: 'rgba(5,15,35,0.7)',
             backdropFilter: 'blur(20px)',
             border: '1px solid rgba(124,58,237,0.2)',
-            borderRadius: '24px',
-            padding: '40px 32px',
+            borderRadius: isMobile ? '16px' : '24px',
+            padding: isMobile ? '24px 16px' : '40px 32px',
           }}>
             <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: '#7c3aed', letterSpacing: '0.2em', marginBottom: '24px' }}>
               // SEND MESSAGE

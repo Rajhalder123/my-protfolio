@@ -1,15 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 const HeroOrb = () => {
     const canvasRef = useRef(null);
+    const [canvasHeight] = useState(() => window.innerWidth <= 768 ? 300 : 480);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
         const W = canvas.parentElement?.clientWidth || 500;
-        const H = 480;
+        const H = canvasHeight;
         canvas.width = W;
         canvas.height = H;
 
@@ -152,7 +153,7 @@ const HeroOrb = () => {
             ref={canvasRef}
             style={{
                 width: '100%',
-                height: '480px',
+                height: `${canvasHeight}px`,
                 display: 'block',
                 borderRadius: '20px',
             }}
