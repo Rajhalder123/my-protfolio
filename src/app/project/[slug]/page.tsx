@@ -49,7 +49,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) notFound();
 
   return (
-    <main className="min-h-screen bg-ink-950 text-pearl">
+    <main className="min-h-screen" style={{ backgroundColor: 'var(--background)', color: 'var(--foreground)' }}>
       <section className="relative overflow-hidden px-4 pb-16 pt-8 sm:px-6 lg:px-8">
         <div className="grid-mask absolute inset-0 opacity-70" />
         <div className="relative mx-auto max-w-7xl">

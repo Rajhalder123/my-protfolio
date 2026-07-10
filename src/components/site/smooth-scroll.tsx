@@ -9,6 +9,11 @@ export function SmoothScroll() {
       return;
     }
 
+    // Skip smooth scroll on touch devices — native momentum scrolling is better
+    if (!window.matchMedia('(pointer: fine)').matches) {
+      return;
+    }
+
     const lenis = new Lenis({
       lerp: 0.09,
       smoothWheel: true,

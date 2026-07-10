@@ -1,20 +1,59 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { Clock3, Mail, MapPin, Send, Globe2 } from 'lucide-react';
+import { CheckCircle2, Clock3, Loader2, Mail, MapPin, Send, Globe2, XCircle } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { profile, socialLinks } from '@/data/portfolio';
 import { Reveal } from './motion-primitives';
 
+type FormStatus = 'idle' | 'sending' | 'success' | 'error';
+
+// Get your free access key from https://web3forms.com/
+const WEB3FORMS_ACCESS_KEY = '070c826f-a817-4b7e-85f3-5d2f6446aeea';
+
 export function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const subject = encodeURIComponent(`Portfolio inquiry from ${form.name || 'visitor'}`);
-    const body = encodeURIComponent(`${form.message}\n\nFrom: ${form.name}\nEmail: ${form.email}`);
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+    setStatus('sending');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          subject: `Portfolio inquiry from ${form.name}`,
+          from_name: 'Portfolio Contact Form',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+        setErrorMessage(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch {
+      setStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
+    }
+  };
+
+  const resetForm = () => {
+    setStatus('idle');
+    setErrorMessage('');
   };
 
   return (
@@ -79,48 +118,82 @@ export function ContactSection() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <form onSubmit={handleSubmit} className="premium-panel grid gap-4 p-5 sm:p-6" data-analytics-event="contact-form">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="grid gap-2 text-sm text-mist">
-                  Name
-                  <input
-                    required
-                    value={form.name}
-                    onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
-                    className="h-12 rounded-md border border-white/10 bg-ink-950/60 px-4 text-pearl outline-none transition placeholder:text-mist focus:border-cyan-brand/55"
-                    placeholder="Your name"
-                  />
-                </label>
-                <label className="grid gap-2 text-sm text-mist">
-                  Email
-                  <input
-                    required
-                    type="email"
-                    value={form.email}
-                    onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
-                    className="h-12 rounded-md border border-white/10 bg-ink-950/60 px-4 text-pearl outline-none transition placeholder:text-mist focus:border-cyan-brand/55"
-                    placeholder="you@example.com"
-                  />
-                </label>
+            {status === 'success' ? (
+              <div className="premium-panel grid place-items-center gap-4 p-8 text-center sm:p-12">
+                <div className="grid h-16 w-16 place-items-center rounded-full border border-signal-green/30 bg-signal-green/10">
+                  <CheckCircle2 className="h-8 w-8 text-signal-green" />
+                </div>
+                <h3 className="text-2xl font-semibold text-pearl">Message sent!</h3>
+                <p className="max-w-sm text-sm leading-7 text-mist">
+                  Thanks for reaching out. I&apos;ll review your message and get back within 24 hours.
+                </p>
+                <Button type="button" variant="premium" onClick={resetForm} className="mt-2">
+                  Send another message
+                </Button>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="premium-panel grid gap-4 p-5 sm:p-6" data-analytics-event="contact-form">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <label className="grid gap-2 text-sm text-mist">
+                    Name
+                    <input
+                      required
+                      value={form.name}
+                      onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+                      className="h-12 rounded-md border border-white/10 bg-ink-950/60 px-4 text-pearl outline-none transition placeholder:text-mist focus:border-cyan-brand/55"
+                      placeholder="Your name"
+                      disabled={status === 'sending'}
+                    />
+                  </label>
+                  <label className="grid gap-2 text-sm text-mist">
+                    Email
+                    <input
+                      required
+                      type="email"
+                      value={form.email}
+                      onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
+                      className="h-12 rounded-md border border-white/10 bg-ink-950/60 px-4 text-pearl outline-none transition placeholder:text-mist focus:border-cyan-brand/55"
+                      placeholder="you@example.com"
+                      disabled={status === 'sending'}
+                    />
+                  </label>
+                </div>
 
-              <label className="grid gap-2 text-sm text-mist">
-                Message
-                <textarea
-                  required
-                  rows={8}
-                  value={form.message}
-                  onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
-                  className="resize-none rounded-md border border-white/10 bg-ink-950/60 px-4 py-3 text-pearl outline-none transition placeholder:text-mist focus:border-cyan-brand/55"
-                  placeholder="Tell me about the product, team, timeline, and what excellence looks like."
-                />
-              </label>
+                <label className="grid gap-2 text-sm text-mist">
+                  Message
+                  <textarea
+                    required
+                    rows={8}
+                    value={form.message}
+                    onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
+                    className="resize-none rounded-md border border-white/10 bg-ink-950/60 px-4 py-3 text-pearl outline-none transition placeholder:text-mist focus:border-cyan-brand/55"
+                    placeholder="Tell me about the product, team, timeline, and what excellence looks like."
+                    disabled={status === 'sending'}
+                  />
+                </label>
 
-              <Button type="submit" size="lg" className="justify-self-start">
-                Send Message
-                <Send className="h-4 w-4" />
-              </Button>
-            </form>
+                {status === 'error' && (
+                  <div className="flex items-center gap-3 rounded-md border border-red-500/25 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+                    <XCircle className="h-4 w-4 shrink-0" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
+                <Button type="submit" size="lg" className="justify-self-start" disabled={status === 'sending'}>
+                  {status === 'sending' ? (
+                    <>
+                      Sending...
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </form>
+            )}
           </Reveal>
         </div>
       </div>
