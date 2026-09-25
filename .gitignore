@@ -22,3 +22,6 @@ design/
 
 # Separate repository cloned for reference
 DevPilot-AI/
+
+# Local Netlify folder
+.netlify
