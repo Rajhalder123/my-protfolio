@@ -1,0 +1,329 @@
+{
+  "core": [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Express",
+    "Python",
+    "PostgreSQL",
+    "MongoDB",
+    "Redis",
+    "WebSockets",
+    "Docker",
+    "LLM APIs"
+  ],
+  "capabilities": [
+    {
+      "id": "web",
+      "title": "Production web applications",
+      "body": "Interfaces people rely on daily: trading UIs, CRM and admin tools, SaaS dashboards.",
+      "stack": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "proof": [
+        {
+          "label": "RTX 5 Web Terminal",
+          "href": "https://webterminal.orrnn.com/"
+        },
+        {
+          "label": "DevPilot AI",
+          "href": "/work/devpilot-ai"
+        }
+      ],
+      "image": {
+        "src": "/images/cap-web.webp",
+        "w": 1040,
+        "h": 580
+      }
+    },
+    {
+      "id": "ai",
+      "title": "AI-powered products",
+      "body": "LLM features built into real products, and computer vision where it fits the problem.",
+      "stack": [
+        "LLM APIs (Groq, Gemini)",
+        "YOLOv8",
+        "OpenCV",
+        "PyTorch"
+      ],
+      "proof": [
+        {
+          "label": "DevPilot AI",
+          "href": "/work/devpilot-ai"
+        },
+        {
+          "label": "Aadhaar Mask Detector",
+          "href": "/work/aadhaar-mask-detector"
+        }
+      ],
+      "image": {
+        "src": "/images/cap-ai.webp",
+        "w": 1040,
+        "h": 580
+      }
+    },
+    {
+      "id": "apis",
+      "title": "APIs & real-time systems",
+      "body": "REST APIs, WebSocket services and live market data, with authentication and validation built in.",
+      "stack": [
+        "Node.js",
+        "Express",
+        "FastAPI",
+        "Socket.IO",
+        "FIX 4.4"
+      ],
+      "proof": [
+        {
+          "label": "DevPilot API",
+          "href": "/work/devpilot-ai"
+        },
+        {
+          "label": "YoForex real-time data",
+          "href": "#experience"
+        }
+      ],
+      "image": {
+        "src": "/images/cap-apis.webp",
+        "w": 1040,
+        "h": 580
+      }
+    },
+    {
+      "id": "fintech",
+      "title": "FinTech & trading systems",
+      "body": "Accounts, KYC, wallets and transactions; trading terminals, OHLC charts and trading analytics.",
+      "stack": [
+        "PostgreSQL",
+        "Prisma",
+        "Redis",
+        "RTX5 / MT5"
+      ],
+      "proof": [
+        {
+          "label": "RTX 5 Web Terminal (live)",
+          "href": "https://webterminal.orrnn.com/"
+        },
+        {
+          "label": "FinTech case study",
+          "href": "/work/fintech-trading-systems"
+        }
+      ],
+      "image": {
+        "src": "/images/cap-fintech.webp",
+        "w": 1040,
+        "h": 580
+      }
+    },
+    {
+      "id": "ops",
+      "title": "Shipping & production debugging",
+      "body": "Deploying, containerising and tracing issues across code, servers, gateways and configuration.",
+      "stack": [
+        "Docker",
+        "Nginx",
+        "Linux / VPS",
+        "Vercel",
+        "Render"
+      ],
+      "proof": [
+        {
+          "label": "YoForex production issues",
+          "href": "#experience"
+        },
+        {
+          "label": "Aadhaar on Docker + Render",
+          "href": "/work/aadhaar-mask-detector"
+        }
+      ],
+      "image": {
+        "src": "/images/cap-deploy.webp",
+        "w": 1040,
+        "h": 580
+      }
+    }
+  ],
+  "toolbox": [
+    {
+      "id": "frontend",
+      "label": "Frontend",
+      "items": [
+        {
+          "name": "React",
+          "icon": "react"
+        },
+        {
+          "name": "Next.js",
+          "icon": "nextjs",
+          "invert": true
+        },
+        {
+          "name": "TypeScript",
+          "icon": "typescript"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "javascript"
+        },
+        {
+          "name": "Tailwind CSS",
+          "icon": "tailwindcss"
+        },
+        {
+          "name": "HTML",
+          "icon": "html5"
+        },
+        {
+          "name": "CSS",
+          "icon": "css3"
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "label": "Backend",
+      "items": [
+        {
+          "name": "Node.js",
+          "icon": "nodejs"
+        },
+        {
+          "name": "Express",
+          "icon": "express",
+          "invert": true
+        },
+        {
+          "name": "Python",
+          "icon": "python"
+        },
+        {
+          "name": "FastAPI",
+          "icon": "fastapi"
+        },
+        {
+          "name": "Socket.IO",
+          "icon": "socketio",
+          "invert": true
+        },
+        {
+          "name": "REST APIs"
+        },
+        {
+          "name": "WebSockets"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "label": "Databases",
+      "items": [
+        {
+          "name": "PostgreSQL",
+          "icon": "postgresql"
+        },
+        {
+          "name": "MongoDB",
+          "icon": "mongodb"
+        },
+        {
+          "name": "Redis",
+          "icon": "redis"
+        },
+        {
+          "name": "Prisma",
+          "icon": "prisma",
+          "invert": true
+        },
+        {
+          "name": "SQL"
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "label": "AI / ML",
+      "items": [
+        {
+          "name": "LLM APIs (Groq, Gemini, OpenAI-compatible)"
+        },
+        {
+          "name": "PyTorch",
+          "icon": "pytorch"
+        },
+        {
+          "name": "OpenCV",
+          "icon": "opencv"
+        },
+        {
+          "name": "YOLOv8"
+        }
+      ]
+    },
+    {
+      "id": "delivery",
+      "label": "Delivery",
+      "items": [
+        {
+          "name": "Git",
+          "icon": "git"
+        },
+        {
+          "name": "GitHub",
+          "icon": "github",
+          "invert": true
+        },
+        {
+          "name": "Docker",
+          "icon": "docker"
+        },
+        {
+          "name": "Nginx",
+          "icon": "nginx"
+        },
+        {
+          "name": "Linux",
+          "icon": "linux",
+          "invert": true
+        },
+        {
+          "name": "Vercel",
+          "icon": "vercel",
+          "invert": true
+        }
+      ]
+    }
+  ],
+  "alsoAtWork": [
+    {
+      "name": "Rust (Axum, Tokio)",
+      "icon": "rust",
+      "invert": true
+    },
+    {
+      "name": "C++ (Drogon)",
+      "icon": "cplusplus"
+    },
+    {
+      "name": "FIX 4.4"
+    },
+    {
+      "name": "RTX5 / MT5 ecosystem"
+    }
+  ],
+  "learning": [
+    {
+      "name": "Go",
+      "icon": "go"
+    },
+    {
+      "name": "System design"
+    },
+    {
+      "name": "Scalable real-time architecture"
+    }
+  ]
+}

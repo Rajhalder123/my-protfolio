@@ -1,0 +1,555 @@
+[
+  {
+    "slug": "devpilot-ai",
+    "title": "DevPilot AI",
+    "featured": true,
+    "caseStudy": true,
+    "tagline": "AI career co-pilot for developers",
+    "status": {
+      "label": "Live · in development",
+      "tone": "live"
+    },
+    "year": "2026",
+    "role": "Creator and lead developer: product, frontend, backend, AI integration",
+    "summary": "A full-stack SaaS product that helps developers get job-ready. It scores resumes against ATS criteria, reviews GitHub projects, runs voice-enabled mock interviews and matches candidates to jobs.",
+    "problem": "Developers preparing for jobs juggle separate tools for resume checks, portfolio feedback, interview practice and job search, and rarely learn why an application failed.",
+    "built": "I designed and built the product end to end: a Next.js 16 app with ten dashboard modules, an Express and TypeScript API over MongoDB, real-time interview sessions over Socket.IO, and AI features on Groq's Llama 3.3 70B.",
+    "highlights": [
+      "Next.js 16 · React 19 app with 10 dashboard modules",
+      "Express + TypeScript API with 13 route groups",
+      "Live mock interviews over Socket.IO"
+    ],
+    "engineering": [
+      "Layered Express and TypeScript backend (routes, controllers, services, repositories) with 13 API route groups and Zod request validation.",
+      "Authentication with JWT and GitHub OAuth through Passport; Helmet, CORS and rate limiting on the API.",
+      "Resume pipeline: PDF upload with Multer, text extraction with pdf-parse, then AI analysis for an ATS score and specific fixes.",
+      "Live mock interviews: Socket.IO sessions carry questions and answers between the browser and the AI service, with voice input and output in the browser.",
+      "GitHub analyzer that pulls repository metadata, README and language data from the GitHub REST API for AI code review.",
+      "Weighted Job Ready Score that combines resume, GitHub and skills results into one number with a breakdown.",
+      "Swagger/OpenAPI documentation, Winston logging, and Docker Compose for the API and MongoDB."
+    ],
+    "features": [
+      "Resume ATS analyzer",
+      "GitHub project analyzer",
+      "Voice-enabled interview simulator",
+      "Job matcher",
+      "AI career mentor chat",
+      "Job Ready Score",
+      "Career roadmap generator",
+      "Portfolio builder",
+      "Cover letter generator",
+      "AI coding tools: code generator, bug finder, SQL assistant, documentation writer"
+    ],
+    "stack": [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Mongoose",
+      "Socket.IO",
+      "Groq · Llama 3.3 70B",
+      "JWT",
+      "GitHub OAuth",
+      "Zod",
+      "Docker"
+    ],
+    "architecture": {
+      "note": "How a request moves through DevPilot.",
+      "columns": [
+        {
+          "title": "Client",
+          "nodes": [
+            {
+              "title": "Next.js 16 · React 19",
+              "detail": "10 dashboard modules"
+            },
+            {
+              "title": "Socket.IO client",
+              "detail": "live interview sessions"
+            }
+          ]
+        },
+        {
+          "title": "API",
+          "nodes": [
+            {
+              "title": "Express + TypeScript",
+              "detail": "13 route groups"
+            },
+            {
+              "title": "Auth & guards",
+              "detail": "JWT · GitHub OAuth · Zod · rate limits"
+            }
+          ]
+        },
+        {
+          "title": "Services",
+          "nodes": [
+            {
+              "title": "AI service",
+              "detail": "Groq · Llama 3.3 70B"
+            },
+            {
+              "title": "GitHub & resume parsing",
+              "detail": "REST API · pdf-parse"
+            }
+          ]
+        },
+        {
+          "title": "Data",
+          "nodes": [
+            {
+              "title": "MongoDB",
+              "detail": "Mongoose · 6 models"
+            },
+            {
+              "title": "Docker Compose",
+              "detail": "API + database"
+            }
+          ]
+        }
+      ]
+    },
+    "outcome": "Live, with the frontend on Vercel and the API on Render. Built from March to June 2026 and still in development.",
+    "image": {
+      "src": "/images/devpilot-home.webp",
+      "w": 1440,
+      "h": 900,
+      "alt": "DevPilot AI landing page with an AI chat preview and a Start building button"
+    },
+    "gallery": [
+      {
+        "src": "/images/devpilot-login.webp",
+        "w": 1280,
+        "h": 800,
+        "alt": "DevPilot AI sign-in page with GitHub sign-in and email login",
+        "caption": "Sign-in with email or GitHub OAuth"
+      },
+      {
+        "src": "/images/devpilot-resume.webp",
+        "w": 720,
+        "h": 720,
+        "alt": "Illustration of an AI resume analysis report",
+        "caption": "Resume analyzer (illustration from DevPilot's landing page)"
+      },
+      {
+        "src": "/images/devpilot-github.webp",
+        "w": 720,
+        "h": 720,
+        "alt": "Illustration of an AI reviewing a code repository",
+        "caption": "GitHub analyzer (illustration from DevPilot's landing page)"
+      },
+      {
+        "src": "/images/devpilot-mock-interview.webp",
+        "w": 720,
+        "h": 720,
+        "alt": "Illustration of a studio microphone for voice interviews",
+        "caption": "Voice interview simulator (illustration from DevPilot's landing page)"
+      }
+    ],
+    "links": {
+      "demo": "https://dev-pilot-ai.vercel.app/",
+      "source": "https://github.com/Rajhalder123/DevPilot-AI"
+    }
+  },
+  {
+    "slug": "fintech-trading-systems",
+    "title": "Production FinTech & Trading Systems",
+    "featured": true,
+    "caseStudy": true,
+    "confidential": true,
+    "tagline": "Live trading terminal, CRM and real-time market data",
+    "status": {
+      "label": "Live · production",
+      "tone": "live"
+    },
+    "year": "2026 — Present",
+    "role": "Software Engineer with technical ownership across projects",
+    "summary": "Professional FinTech work: the RTX 5 Web Terminal traders use in the browser, CRM and back-office workflows, trading analytics, and real-time market-data integrations.",
+    "confidentialNote": "The trading terminal is public. CRM, back-office and backend code, internal URLs and system details are private and not shown here.",
+    "problem": "A trading business runs on software that handles real accounts and real money: onboarding and KYC, wallets and transactions, live market data and trading tools. It has to stay correct and available while markets move.",
+    "built": "I built the frontend of the RTX 5 Web Terminal, a MetaTrader-style trading terminal that runs in the browser. Around it I work across CRM and admin workflows, trading analytics, real-time market data over WebSockets and FIX 4.4, and the production debugging that keeps it running.",
+    "highlights": [
+      "Live: RTX 5 Web Terminal, a browser trading terminal",
+      "CRM: accounts, KYC, wallets, deposits, withdrawals",
+      "Production debugging across code, servers and gateways"
+    ],
+    "engineering": [
+      "Frontend of the RTX 5 Web Terminal: streaming quotes, candlestick charts from M1 to MN, one-click trading and account panels, connected to the trading backend over WebSockets.",
+      "CRM functionality for users, trading accounts, KYC, wallets, deposits, withdrawals, transactions and admin workflows.",
+      "Trading interfaces in React, Next.js and TypeScript: multi-timeframe OHLC charts, symbol switching and live chart updates over WebSockets and FIX 4.4.",
+      "Trading-journal analytics: win rate, profit factor, expectancy, risk-to-reward, maximum drawdown, reports, CSV export and Monte Carlo simulation.",
+      "Work across PostgreSQL, Prisma, Redis, REST APIs, and Rust, C++ and Node.js components in gateway and trading-system integrations.",
+      "Production debugging: HTTP 429/502 errors, authentication, WebSockets, PostgreSQL, Nginx, gateway connectivity and environment configuration.",
+      "Investigation of copy-trading execution across the open/close/modify order lifecycle, queues, retries and reconciliation.",
+      "Security review that led to server-side validation and clear trust boundaries for a client-trusted check."
+    ],
+    "stack": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Zustand",
+      "Node.js",
+      "PostgreSQL",
+      "Prisma",
+      "Redis",
+      "WebSockets",
+      "FIX 4.4",
+      "RTX5 / MT5 ecosystem",
+      "Rust",
+      "C++",
+      "Nginx"
+    ],
+    "architecture": {
+      "note": "Where my work sits. Simplified, not a system map.",
+      "columns": [
+        {
+          "title": "Interfaces",
+          "nodes": [
+            {
+              "title": "RTX 5 Web Terminal",
+              "detail": "React · WebSockets · charts"
+            },
+            {
+              "title": "Client & admin apps",
+              "detail": "auth · OTP · KYC flows"
+            }
+          ]
+        },
+        {
+          "title": "Back office",
+          "nodes": [
+            {
+              "title": "CRM",
+              "detail": "accounts · wallets · transactions"
+            },
+            {
+              "title": "Analytics",
+              "detail": "journal · risk metrics"
+            }
+          ]
+        },
+        {
+          "title": "APIs & real-time",
+          "nodes": [
+            {
+              "title": "REST + WebSockets",
+              "detail": "Node.js · TypeScript"
+            },
+            {
+              "title": "Market data",
+              "detail": "FIX 4.4 · ticks · OHLC"
+            }
+          ]
+        },
+        {
+          "title": "Data & infra",
+          "nodes": [
+            {
+              "title": "PostgreSQL · Prisma",
+              "detail": "Redis"
+            },
+            {
+              "title": "Gateway & ops",
+              "detail": "Rust · C++ · Nginx"
+            }
+          ]
+        }
+      ]
+    },
+    "outcome": "The RTX 5 Web Terminal is live at webterminal.orrnn.com. CRM and platform work continues in production.",
+    "image": {
+      "src": "/images/rtx-web-terminal.webp",
+      "w": 1440,
+      "h": 900,
+      "alt": "RTX 5 Web Terminal: market watch with live bid and ask prices, a BTCUSD candlestick chart with one-click sell and buy, and the trade toolbox"
+    },
+    "links": {
+      "demo": "https://webterminal.orrnn.com/",
+      "demoLabel": "Open live terminal"
+    },
+    "aliases": [
+      "RTX 5 Web Terminal",
+      "web terminal",
+      "trading terminal",
+      "RTX 5",
+      "RTX5",
+      "webterminal"
+    ],
+    "showcase": {
+      "title": "RTX 5 Web Terminal",
+      "url": "https://webterminal.orrnn.com/",
+      "summary": "A MetaTrader-style trading terminal that runs in the browser, with streaming prices and one-click trading. The same frontend also runs as a desktop app.",
+      "features": [
+        "Market watch with streaming bid and ask prices",
+        "Candlestick charts across nine timeframes, M1 to MN",
+        "One-click sell and buy with volume control",
+        "Drawing tools and chart controls",
+        "Navigator for accounts, indicators, automated strategies and scripts",
+        "Toolbox for trades, history, exposure, news, calendar, alerts and the journal",
+        "Multi-language interface",
+        "Live connection to the trading backend over WebSockets"
+      ],
+      "stack": [
+        "React",
+        "Vite",
+        "Zustand",
+        "WebSockets",
+        "i18next",
+        "Canvas",
+        "Web Workers"
+      ],
+      "images": [
+        {
+          "src": "/images/rtx-web-terminal.webp",
+          "w": 1440,
+          "h": 900,
+          "alt": "RTX 5 Web Terminal on desktop with market watch, chart and toolbox",
+          "caption": "Desktop browser"
+        },
+        {
+          "src": "/images/rtx-web-terminal-mobile.webp",
+          "w": 390,
+          "h": 844,
+          "alt": "RTX 5 Web Terminal on a phone with a chart and one-click sell and buy",
+          "caption": "Phone"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "aadhaar-mask-detector",
+    "title": "Aadhaar Mask Detector",
+    "featured": true,
+    "caseStudy": true,
+    "tagline": "Computer-vision API that masks Aadhaar numbers",
+    "status": {
+      "label": "Live",
+      "tone": "live"
+    },
+    "year": "2026",
+    "role": "Solo project: model integration, API, frontend, deployment",
+    "summary": "Upload an Aadhaar card image and get back a copy with the first eight digits of the number masked, so only the last four stay readable.",
+    "problem": "Aadhaar cards are routinely shared as ID proof with the full 12-digit number exposed. Masking it by hand is slow and easy to get wrong.",
+    "built": "A FastAPI service that runs a YOLOv8 model trained to find the number, masks it with OpenCV and returns the result to a drag-and-drop web client. The API is containerised with Docker and runs on Render; the frontend is on Vercel.",
+    "highlights": [
+      "YOLOv8 detection → OpenCV masking",
+      "FastAPI upload endpoint, Dockerised",
+      "Tesseract OCR for date of birth and gender"
+    ],
+    "engineering": [
+      "Detection with YOLOv8 (Ultralytics on CPU PyTorch) at 320 px input and a 0.3 confidence threshold, sized for a CPU-only host.",
+      "Masking with OpenCV: the first eight digits are covered with the card's sampled background colour and replaced with XXXX XXXX, leaving the last four readable.",
+      "Tesseract OCR plus regex parsing to extract date of birth and gender from the card text.",
+      "FastAPI upload endpoint with CORS, invalid-image handling and a JSON response carrying the masked image as base64.",
+      "Deployment: Dockerfile and a Render blueprint (render.yaml) for the API; static frontend on Vercel."
+    ],
+    "stack": [
+      "Python",
+      "FastAPI",
+      "YOLOv8",
+      "PyTorch",
+      "OpenCV",
+      "Tesseract OCR",
+      "Docker",
+      "Render",
+      "Vercel",
+      "JavaScript"
+    ],
+    "architecture": {
+      "note": "The masking pipeline, from upload to response.",
+      "columns": [
+        {
+          "title": "Browser",
+          "nodes": [
+            {
+              "title": "Upload",
+              "detail": "drag and drop · JPEG / PNG"
+            }
+          ]
+        },
+        {
+          "title": "FastAPI",
+          "nodes": [
+            {
+              "title": "POST /mask",
+              "detail": "validation · CORS"
+            }
+          ]
+        },
+        {
+          "title": "Detect & read",
+          "nodes": [
+            {
+              "title": "YOLOv8",
+              "detail": "imgsz 320 · conf 0.3"
+            },
+            {
+              "title": "Tesseract OCR",
+              "detail": "date of birth · gender"
+            }
+          ]
+        },
+        {
+          "title": "Mask & return",
+          "nodes": [
+            {
+              "title": "OpenCV",
+              "detail": "first 8 digits masked"
+            },
+            {
+              "title": "JSON response",
+              "detail": "base64 image + fields"
+            }
+          ]
+        }
+      ]
+    },
+    "outcome": "Live, with the API on Render and the web client on Vercel.",
+    "image": {
+      "src": "/images/aadhaar.webp",
+      "w": 1280,
+      "h": 800,
+      "alt": "Aadhaar Shield upload screen with a drag-and-drop area for an Aadhaar card image"
+    },
+    "links": {
+      "demo": "https://aadhaar-mask-detector.vercel.app/",
+      "source": "https://github.com/Rajhalder123/aadhaar-mask-detector-fullstack"
+    }
+  },
+  {
+    "slug": "ai-verse",
+    "title": "AI Verse",
+    "featured": false,
+    "tagline": "AI tools for developers and students",
+    "status": {
+      "label": "Live",
+      "tone": "live"
+    },
+    "summary": "A suite of AI tools: chatbot, text summarizer, code explainer and a JavaScript MCQ exam. Version two adds a live HTML/CSS/JS editor with AI code explanation.",
+    "problem": "Students and developers switch between separate AI tools to explain code, summarise notes and practise questions.",
+    "built": "Version one is a React app with four AI tools on Gemini 2.0 Flash, PDF input with pdf.js and PDF export with jsPDF. Version two adds a Monaco-based editor with live preview and an Express API that calls Groq's Llama 3.3 70B to explain code.",
+    "stack": [
+      "React",
+      "Vite",
+      "Gemini API",
+      "Groq · Llama 3.3 70B",
+      "Express",
+      "Monaco Editor",
+      "jsPDF"
+    ],
+    "image": {
+      "src": "/images/aiverse.webp",
+      "w": 1280,
+      "h": 680,
+      "alt": "AI Verse code editor with HTML, CSS and JS tabs and an Explain button"
+    },
+    "links": {
+      "demo": "https://ai-verse-psi.vercel.app/",
+      "source": "https://github.com/Rajhalder123/AI-Verse-FRONTEND",
+      "extra": [
+        {
+          "label": "API source",
+          "href": "https://github.com/Rajhalder123/AI-verse-BACKEND"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "chatty",
+    "title": "Chatty",
+    "featured": false,
+    "tagline": "Real-time chat app",
+    "status": {
+      "label": "Live",
+      "tone": "live"
+    },
+    "summary": "A web messaging app with sign-in and real-time conversations over Socket.IO.",
+    "problem": "Chat needs instant two-way delivery, which request-and-response APIs can only fake with polling.",
+    "built": "A React (Vite) client with authentication and a Socket.IO connection to a backend API hosted on Render.",
+    "stack": [
+      "React",
+      "Vite",
+      "Socket.IO",
+      "REST API",
+      "Render",
+      "Netlify"
+    ],
+    "image": {
+      "src": "/images/chatty.webp",
+      "w": 1280,
+      "h": 800,
+      "alt": "Chatty sign-in screen next to a gradient panel of chat bubbles"
+    },
+    "links": {
+      "demo": "https://message-chat-application.netlify.app/"
+    }
+  },
+  {
+    "slug": "haldarcars",
+    "title": "HaldarCars",
+    "featured": false,
+    "tagline": "Full-stack car marketplace (MERN)",
+    "status": {
+      "label": "Live",
+      "tone": "live"
+    },
+    "summary": "A car buying and selling site with accounts, listings and image uploads.",
+    "problem": "Buyers and sellers need one place to list cars with photos and browse what is for sale.",
+    "built": "A React frontend with an Express and MongoDB API: JWT authentication with Joi validation, buy and sell routes, and image uploads with Multer.",
+    "stack": [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "Joi",
+      "Multer",
+      "Tailwind CSS"
+    ],
+    "image": {
+      "src": "/images/haldarcars.webp",
+      "w": 1280,
+      "h": 800,
+      "alt": "Drive by Raj home page with the headline Drive your dreams"
+    },
+    "links": {
+      "demo": "https://drive-with-raj.netlify.app/",
+      "source": "https://github.com/Rajhalder123/halder-car"
+    }
+  },
+  {
+    "slug": "fotoflix",
+    "title": "Fotoflix",
+    "featured": false,
+    "tagline": "Photo discovery app on the Unsplash API",
+    "status": {
+      "label": "Live",
+      "tone": "live"
+    },
+    "summary": "Search and browse photography from the Unsplash API, open images in a lightbox and save favourites.",
+    "problem": "Browsing a large photo API needs fast search, a focused viewer and a way to keep what you like.",
+    "built": "A React app with client-side routing, Unsplash API search, a lightbox viewer and favourites stored in localStorage.",
+    "stack": [
+      "React",
+      "React Router",
+      "Unsplash API",
+      "localStorage"
+    ],
+    "image": {
+      "src": "/images/fotoflix.webp",
+      "w": 1280,
+      "h": 800,
+      "alt": "Fotoflix photo grid with search and favourites"
+    },
+    "links": {
+      "demo": "https://world-galaxy.netlify.app/",
+      "source": "https://github.com/Rajhalder123/world-galaxy"
+    }
+  }
+]

@@ -1,115 +1,74 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import './index.css';
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Experience from './components/Experience';
-import Skills from './components/Skills';
-import Contact from './components/Contact';
-import Projects from './components/Projects';
-import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop';
-import ProjectDetails from './components/ProjectDetails';
-import StarField from './components/StarField';
-import IntroStory from './components/IntroStory';
-import RealmPortal from './components/RealmPortal';
-import SectionReveal from './components/SectionReveal';
-import { ThemeProvider } from './content/ThemeContext';
+import { lazy, Suspense, useEffect } from 'react';
+import { BrowserRouter, Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
+import { UIProvider } from './lib/ui';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import Overlays from './features/Overlays';
+import Home from './pages/Home';
 
-const GlobalScrollHandler = () => {
+const CaseStudy = lazy(() => import('./pages/CaseStudy'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+/** Scrolls to the top on route change, or to the #section in the URL. */
+function ScrollManager() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
     if (!hash) {
       window.scrollTo(0, 0);
-    } else {
-      const id = hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => element.scrollIntoView({ behavior: 'smooth' }), 0);
-      }
+      return undefined;
     }
+    let tries = 0;
+    let frame;
+    const find = () => {
+      const el = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (el) el.scrollIntoView();
+      else if (tries++ < 60) frame = requestAnimationFrame(find);
+    };
+    find();
+    return () => cancelAnimationFrame(frame);
   }, [pathname, hash]);
   return null;
-};
+}
 
-const MainLayout = ({ showStory, onEnterPortfolio }) => (
-  <>
-    {/* Fixed full-screen 3D starfield — scroll-reactive warp */}
-    <StarField />
+/** Old links used /project/:slug. */
+function LegacyProjectRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/work/${slug}`} replace />;
+}
 
-    {/* Cinematic intro story overlay */}
-    {showStory && <IntroStory onEnter={onEnterPortfolio} />}
-
-    {/* Portfolio — fades in after story */}
-    <div style={{
-      position: 'relative',
-      zIndex: 1,
-      opacity: showStory ? 0 : 1,
-      transition: 'opacity 1s ease 0.3s',
-      pointerEvents: showStory ? 'none' : 'auto',
-      overflowX: 'hidden',
-      maxWidth: '100vw',
-    }}>
-      <Navbar />
-
-      {/* HOME — entry realm */}
-      <Home />
-
-      {/* ↓ Transition: entering Projects realm */}
-      <RealmPortal realm="projects" />
-      <SectionReveal delay={0}>
-        <Projects />
-      </SectionReveal>
-
-      {/* ↓ Transition: entering Skills realm */}
-      <RealmPortal realm="skills" />
-      <SectionReveal delay={0}>
-        <Skills />
-      </SectionReveal>
-
-      {/* ↓ Transition: entering Experience realm */}
-      <RealmPortal realm="experience" />
-      <SectionReveal delay={0}>
-        <Experience />
-      </SectionReveal>
-
-      {/* ↓ Transition: entering Contact realm */}
-      <RealmPortal realm="contact" />
-      <SectionReveal delay={0}>
-        <Contact />
-      </SectionReveal>
-
-      <Footer />
-      <ScrollToTop />
-    </div>
-  </>
-);
-
-const App = () => {
-  const [showStory, setShowStory] = useState(() => {
-    return !sessionStorage.getItem('story_seen');
-  });
-
-  const handleEnterPortfolio = () => {
-    sessionStorage.setItem('story_seen', '1');
-    setShowStory(false);
-    setTimeout(() => window.scrollTo(0, 0), 100);
-  };
-
+/** Everything inside the router. Shared by the browser entry and the build-time prerender. */
+export function AppShell() {
   return (
-    <ThemeProvider>
-      <Router>
-        <GlobalScrollHandler />
-        <Routes>
-          <Route
-            path="/"
-            element={<MainLayout showStory={showStory} onEnterPortfolio={handleEnterPortfolio} />}
-          />
-          <Route path="/project/:slug" element={<ProjectDetails />} />
-        </Routes>
-      </Router>
-    </ThemeProvider>
+    <UIProvider>
+      <ScrollManager />
+      <div id="top" />
+      <a
+        href="#main"
+        className="sr-only z-[100] rounded-lg bg-paper px-4 py-2 font-medium text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        Skip to content
+      </a>
+      <Navbar />
+      <main id="main" tabIndex={-1} className="outline-none">
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/work/:slug" element={<CaseStudy />} />
+            <Route path="/project/:slug" element={<LegacyProjectRedirect />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </main>
+      <Footer />
+      <Overlays />
+    </UIProvider>
   );
-};
+}
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppShell />
+    </BrowserRouter>
+  );
+}

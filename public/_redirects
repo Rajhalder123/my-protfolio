@@ -1,0 +1,9 @@
+# AI assistant (Netlify function, same domain)
+/api/ask  /.netlify/functions/ask  200
+
+# Old case-study links
+/project/*  /work/:splat  301
+
+# Prerendered pages (/, /work/<slug>) are served as files.
+# Anything else gets the app shell with a real 404 status.
+/*  /app-shell.html  404

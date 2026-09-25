@@ -1,0 +1,88 @@
+{
+  "building": [
+    {
+      "id": "devpilot",
+      "tag": "Side project",
+      "title": "DevPilot AI",
+      "detail": "Developing the product further: dashboard modules, AI features and deployment.",
+      "href": "/work/devpilot-ai",
+      "image": {
+        "src": "/images/build-devpilot.webp",
+        "w": 960,
+        "h": 536
+      }
+    },
+    {
+      "id": "trading",
+      "tag": "At work",
+      "title": "Trading platform at YoForex",
+      "detail": "The RTX 5 Web Terminal, trading analytics and real-time integrations.",
+      "href": "/work/fintech-trading-systems",
+      "image": {
+        "src": "/images/build-trading.webp",
+        "w": 960,
+        "h": 536
+      }
+    },
+    {
+      "id": "workflows",
+      "tag": "Exploring",
+      "title": "AI-assisted engineering",
+      "detail": "AI workflows and automation for day-to-day engineering work.",
+      "image": {
+        "src": "/images/build-workflows.webp",
+        "w": 960,
+        "h": 960
+      }
+    }
+  ],
+  "github": {
+    "note": "Only repositories listed in \"descriptions\" are shown. The snapshot is used when the GitHub API is unavailable. Captured 2026-09-25.",
+    "publicRepos": 46,
+    "since": "2023",
+    "repos": [
+      {
+        "name": "my-protfolio",
+        "language": "TypeScript",
+        "pushedAt": "2026-07-10T00:00:00Z"
+      },
+      {
+        "name": "DevPilot-AI",
+        "language": "TypeScript",
+        "pushedAt": "2026-06-21T00:00:00Z"
+      },
+      {
+        "name": "aadhaar-mask-detector-fullstack",
+        "language": "Python",
+        "pushedAt": "2026-04-01T00:00:00Z"
+      },
+      {
+        "name": "AI-Verse-FRONTEND",
+        "language": "JavaScript",
+        "pushedAt": "2026-01-19T00:00:00Z"
+      },
+      {
+        "name": "AI-verse-BACKEND",
+        "language": "JavaScript",
+        "pushedAt": "2026-01-19T00:00:00Z"
+      },
+      {
+        "name": "halder-car",
+        "language": "JavaScript",
+        "pushedAt": "2025-11-22T00:00:00Z"
+      }
+    ],
+    "descriptions": {
+      "my-protfolio": "This portfolio",
+      "DevPilot-AI": "AI career co-pilot for developers",
+      "aadhaar-mask-detector-fullstack": "Aadhaar number masking with YOLOv8 + FastAPI",
+      "AI-Verse-FRONTEND": "AI Verse v2: editor with AI code explanation",
+      "AI-verse-BACKEND": "AI Verse v2 API (Express + Groq)",
+      "ai-verse": "AI Verse v1: AI tools suite",
+      "halder-car": "HaldarCars: MERN car marketplace",
+      "car-backend": "HaldarCars API",
+      "world-galaxy": "Fotoflix: Unsplash photo discovery",
+      "qr-code-genarater": "QR code generator (Next.js)"
+    }
+  }
+}

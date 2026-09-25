@@ -1,0 +1,88 @@
+{
+  "name": "Raj Halder",
+  "role": "Full Stack Engineer",
+  "positioning": [
+    "AI",
+    "Web",
+    "Production Systems"
+  ],
+  "headline": "Full Stack Engineer building AI-powered products and production systems.",
+  "stackLine": [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "AI",
+    "Databases",
+    "Cloud"
+  ],
+  "location": "Kolkata, West Bengal, India",
+  "locationShort": "Kolkata, India",
+  "workPreference": "remote roles or major Indian tech hubs",
+  "availability": {
+    "open": true,
+    "summary": "Open to full stack and software engineering roles",
+    "roles": [
+      "Full Stack Engineer",
+      "Software Engineer",
+      "Frontend Engineer (React / Next.js)",
+      "AI-focused Software Engineer"
+    ],
+    "companies": "Product companies, strong engineering teams and AI-focused companies",
+    "noticePeriod": "15 days"
+  },
+  "current": {
+    "role": "Software Engineer",
+    "company": "YoForex",
+    "domain": "FinTech / trading platform"
+  },
+  "education": {
+    "degree": "B.Tech in Information Technology",
+    "school": "Maulana Abul Kalam Azad University of Technology (MAKAUT)",
+    "schoolShort": "MAKAUT",
+    "region": "West Bengal, India",
+    "year": "2025",
+    "cgpa": "8.15"
+  },
+  "training": [
+    {
+      "name": "Python Full Stack Development",
+      "provider": "QSpiders"
+    }
+  ],
+  "email": "rajhalder.dev@gmail.com",
+  "links": {
+    "github": "https://github.com/Rajhalder123",
+    "githubUser": "Rajhalder123",
+    "linkedin": "https://www.linkedin.com/in/raj-halder-2279a1266/",
+    "site": "https://raj-protfolio.netlify.app"
+  },
+  "about": [
+    "I'm a full stack engineer in Kolkata. I work across the whole path of a feature: the React and Next.js interface, the Node.js or Python service behind it, the PostgreSQL or MongoDB data underneath, and the deployment and debugging that keep it running.",
+    "At YoForex I build and support production FinTech software: the CRM behind client accounts and money movement, trading interfaces, real-time market data and trading analytics. I joined as a web developer; the role has grown into technical ownership across projects and teams.",
+    "Outside work I build AI products end to end. The largest is DevPilot AI, a career co-pilot for developers with a Next.js front end, an Express and TypeScript API, and LLM features on Groq."
+  ],
+  "principles": [
+    {
+      "title": "Understand the problem",
+      "detail": "Who uses it, what breaks today, and what done looks like."
+    },
+    {
+      "title": "Design the simplest architecture",
+      "detail": "Fewest moving parts that meet the real constraints."
+    },
+    {
+      "title": "Build incrementally",
+      "detail": "Small, reviewable changes that ship behind working flows."
+    },
+    {
+      "title": "Test real user flows",
+      "detail": "Auth, money movement and failure paths before the happy path."
+    },
+    {
+      "title": "Ship, monitor, improve",
+      "detail": "Watch production, trace issues to the root cause, fix it properly."
+    }
+  ]
+}

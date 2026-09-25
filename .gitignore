@@ -16,3 +16,9 @@ yarn-error.log*
 # git backup folder (if still exists)
 my-app_git_backup/
 my-app/
+
+# Local-only: original artwork and pre-redesign archive
+design/
+
+# Separate repository cloned for reference
+DevPilot-AI/

@@ -1,51 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raj Halder — Full Stack Engineer | AI & Production Systems</title>
+    <meta
+      name="description"
+      content="Raj Halder is a Full Stack Engineer in Kolkata building AI-powered products and production systems with React, Next.js, TypeScript, Node.js and Python."
+    />
+    <meta name="author" content="Raj Halder" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#07090D" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href="https://raj-protfolio.netlify.app/" />
 
-  <!-- Primary Meta Tags -->
-  <title>Raj Haldar | Full-Stack Developer & AI Engineer Portfolio</title>
-  <meta name="description" content="Raj Haldar — Full-Stack Developer & AI Engineer from West Bengal, India. Explore 8+ production-ready projects built with React, Node.js, Python, FastAPI, and AI/ML. Available for hire." />
-  <meta name="keywords" content="Raj Haldar, Full Stack Developer, AI Engineer, React Developer, MERN Stack, Portfolio, Web Developer India, Python, FastAPI, Machine Learning" />
-  <meta name="author" content="Raj Haldar" />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#020408" />
+    <meta name="google-site-verification" content="qa3Kpr2oTNXC19386okUh7dI0ZLDtz5KAfiEckWMfQU" />
 
-  <!-- Google Verification -->
-  <meta name="google-site-verification" content="qa3Kpr2oTNXC19386okUh7dI0ZLDtz5KAfiEckWMfQU" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Raj Halder" />
+    <meta property="og:title" content="Raj Halder — Full Stack Engineer | AI & Production Systems" />
+    <meta
+      property="og:description"
+      content="Full Stack Engineer building AI-powered products and production systems. React, Next.js, TypeScript, Node.js, Python."
+    />
+    <meta property="og:url" content="https://raj-protfolio.netlify.app/" />
+    <meta property="og:image" content="https://raj-protfolio.netlify.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Raj Halder, Full Stack Engineer, with a core stack of React, Next.js, TypeScript, Node.js, Python and AI" />
+    <meta property="profile:first_name" content="Raj" />
+    <meta property="profile:last_name" content="Halder" />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Raj Haldar | Full-Stack Developer & AI Engineer" />
-  <meta property="og:description" content="Explore 8+ production-ready projects built with React, Node.js, Python, and AI/ML. Available for hire." />
-  <meta property="og:image" content="/brand-icon.svg" />
-  <meta property="og:url" content="https://rajhalder.dev" />
-  <meta property="og:site_name" content="Raj Haldar Portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Raj Halder — Full Stack Engineer | AI & Production Systems" />
+    <meta
+      name="twitter:description"
+      content="Full Stack Engineer building AI-powered products and production systems."
+    />
+    <meta name="twitter:image" content="https://raj-protfolio.netlify.app/og-image.png" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Raj Haldar | Full-Stack Developer & AI Engineer" />
-  <meta name="twitter:description" content="Explore 8+ production-ready projects built with React, Node.js, Python, and AI/ML." />
-  <meta name="twitter:image" content="/brand-icon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/brand-icon.svg" />
-  <link rel="apple-touch-icon" href="/brand-icon.svg" />
+    <link rel="preload" href="/fonts/archivo-wide-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/plex-sans-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/images/portrait.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width: 1024px)" />
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://rajhalder.dev" />
+    <style>
+      @font-face {
+        font-family: 'Archivo';
+        src: url('/fonts/archivo-wide-var.woff2') format('woff2');
+        font-weight: 600 700;
+        font-stretch: 118%;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'IBM Plex Sans';
+        src: url('/fonts/plex-sans-var.woff2') format('woff2');
+        font-weight: 400 600;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'IBM Plex Mono';
+        src: url('/fonts/plex-mono-400.woff2') format('woff2');
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'IBM Plex Mono';
+        src: url('/fonts/plex-mono-500.woff2') format('woff2');
+        font-weight: 500;
+        font-display: swap;
+      }
+      html,
+      body {
+        background: #07090d;
+        color: #e8ecf3;
+      }
+    </style>
 
-  <!-- FontAwesome for Social Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Raj Halder",
+        "url": "https://raj-protfolio.netlify.app/",
+        "image": "https://raj-protfolio.netlify.app/images/portrait.webp",
+        "jobTitle": "Full Stack Engineer",
+        "email": "mailto:rajhalder.dev@gmail.com",
+        "worksFor": { "@type": "Organization", "name": "YoForex" },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Maulana Abul Kalam Azad University of Technology (MAKAUT)"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kolkata",
+          "addressRegion": "West Bengal",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://github.com/Rajhalder123",
+          "https://www.linkedin.com/in/raj-halder-2279a1266/"
+        ],
+        "knowsAbout": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Node.js",
+          "Python",
+          "FastAPI",
+          "PostgreSQL",
+          "MongoDB",
+          "WebSockets",
+          "LLM applications",
+          "Computer vision",
+          "FinTech and trading systems"
+        ]
+      }
+    </script>
+  </head>
 
-<body>
-  <noscript>You need to enable JavaScript to view Raj Haldar's portfolio.</noscript>
-  <div id="root"></div>
-</body>
-
+  <body>
+    <noscript>
+      <div style="max-width: 40rem; margin: 4rem auto; padding: 0 1.25rem; font-family: system-ui, sans-serif; line-height: 1.6">
+        <h1>Raj Halder — Full Stack Engineer</h1>
+        <p>Building AI-powered products and production systems. Kolkata, India.</p>
+        <p>
+          Email: <a href="mailto:rajhalder.dev@gmail.com" style="color: #5bd8e5">rajhalder.dev@gmail.com</a> ·
+          <a href="https://www.linkedin.com/in/raj-halder-2279a1266/" style="color: #5bd8e5">LinkedIn</a> ·
+          <a href="https://github.com/Rajhalder123" style="color: #5bd8e5">GitHub</a>
+        </p>
+        <p>This site needs JavaScript for the full portfolio.</p>
+      </div>
+    </noscript>
+    <div id="root"></div>
+  </body>
 </html>

@@ -1,0 +1,83 @@
+[
+  {
+    "id": "yoforex",
+    "company": "YoForex",
+    "role": "Software Engineer",
+    "domain": "FinTech / Trading Platform",
+    "period": "2026 — Present",
+    "location": "Kolkata, India",
+    "summary": "I build and support production software for a trading business: the CRM behind client accounts and money movement, the trading interfaces clients use, and the real-time data and integrations underneath them.",
+    "growth": "I joined as a web developer on the trading platform. The role has grown into technical ownership across projects and teams: coordinating work, reviewing changes, triaging production issues and making technical decisions.",
+    "areas": [
+      {
+        "id": "crm",
+        "title": "FinTech CRM & client applications",
+        "points": [
+          "Developed and maintained CRM functionality for users, trading accounts, KYC, wallets, deposits, withdrawals, transactions and admin workflows.",
+          "Worked on authentication and OTP verification in client-facing applications and admin panels."
+        ]
+      },
+      {
+        "id": "trading",
+        "title": "Trading interfaces & real-time data",
+        "points": [
+          "Built the frontend of the RTX 5 Web Terminal, a browser trading terminal now live at webterminal.orrnn.com.",
+          "Built and improved trading-platform interfaces with React, Next.js, TypeScript, Tailwind CSS and reusable UI components.",
+          "Worked with RTX5/MT5-related infrastructure, broker integrations, market data, tick processing, OHLC candles and multi-timeframe charts.",
+          "Used FIX 4.4 and WebSockets for live market data and trading-terminal features such as symbol switching and live chart updates."
+        ]
+      },
+      {
+        "id": "analytics",
+        "title": "Trading analytics",
+        "points": [
+          "Built trading-journal and analytics features: win rate, profit factor, expectancy, risk-to-reward, maximum drawdown, trade notes, reports, CSV export and Monte Carlo simulation."
+        ]
+      },
+      {
+        "id": "backend",
+        "title": "APIs, data & services",
+        "points": [
+          "Worked with PostgreSQL, Prisma, Redis, REST APIs and WebSockets across CRM, trading and financial workflows.",
+          "Worked across Rust (Axum, Tokio), C++ (Drogon) and Node.js/TypeScript components in gateway, API and trading-system integrations."
+        ]
+      },
+      {
+        "id": "debugging",
+        "title": "Production debugging",
+        "points": [
+          "Debugged production issues involving HTTP 429/502 errors, authentication, WebSockets, PostgreSQL, Nginx, gateway connectivity and environment configuration.",
+          "Investigated copy-trading execution across the open/close/modify order lifecycle, queues, retries and reconciliation."
+        ]
+      },
+      {
+        "id": "ownership",
+        "title": "Technical ownership",
+        "points": [
+          "Coordinate and review technical work across teams, and resolve production issues whose cause can sit in application code, admin code, deployment, servers, routing, integrations or environment configuration.",
+          "Reviewed a client-trusted security check and pushed for server-side validation and clear trust boundaries.",
+          "Exploring AI-assisted workflows and automation for day-to-day engineering."
+        ]
+      }
+    ],
+    "stack": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js",
+      "PostgreSQL",
+      "Prisma",
+      "Redis",
+      "WebSockets",
+      "FIX 4.4",
+      "Rust",
+      "C++",
+      "Nginx"
+    ],
+    "live": {
+      "label": "RTX 5 Web Terminal",
+      "url": "https://webterminal.orrnn.com/"
+    }
+  }
+]
