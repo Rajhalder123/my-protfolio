@@ -118,7 +118,8 @@ await write(null, 'app-shell.html', {
 await write('/', 'index.html', { title: defaultTitle, description: defaultDescription, url: `${site}/` });
 
 for (const p of projects.filter((x) => x.caseStudy)) {
-  await write(`/work/${p.slug}`, path.join('work', p.slug, 'index.html'), {
+  // work/<slug>.html: Netlify serves it at /work/<slug> with no trailing-slash redirect.
+  await write(`/work/${p.slug}`, path.join('work', `${p.slug}.html`), {
     title: `${p.title}: case study — ${profile.name}`,
     description: `${p.tagline}. ${p.summary}`,
     url: `${site}/work/${p.slug}`,
