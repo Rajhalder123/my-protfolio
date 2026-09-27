@@ -7,10 +7,10 @@ import Icon from '../ui/Icon';
 import SmartLink from '../ui/SmartLink';
 
 const LINKS = [
-  { id: 'work', label: 'Work' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'capabilities', label: 'Skills' },
   { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'work', label: 'Projects' },
+  { id: 'capabilities', label: 'Skills' },
   { id: 'contact', label: 'Contact' },
 ];
 const IDS = LINKS.map((l) => l.id);

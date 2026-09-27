@@ -103,9 +103,9 @@ async function write(route, file, meta) {
   console.log(`prerender: ${route || '(app shell)'} -> ${path.relative(buildDir, target)} (${Math.round(html.length / 1024)} KB)`);
 }
 
-const defaultTitle = `${profile.name} — Full Stack Engineer | AI & Production Systems`;
+const defaultTitle = `${profile.name} — AI / Full Stack Engineer`;
 const defaultDescription =
-  'Raj Halder is a Full Stack Engineer in Kolkata building AI-powered products and production systems with React, Next.js, TypeScript, Node.js and Python.';
+  'Raj Halder is an AI / Full Stack Engineer building production-grade web applications, AI products, FinTech platforms, and real-time systems with React, Next.js, TypeScript, Node.js, and Python.';
 
 // Unknown URLs get the empty shell (served with a 404 status via _redirects).
 await write(null, 'app-shell.html', {

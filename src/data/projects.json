@@ -5,6 +5,7 @@
     "featured": true,
     "caseStudy": true,
     "tagline": "AI career co-pilot for developers",
+    "category": "AI / Full Stack SaaS",
     "status": {
       "label": "Live · in development",
       "tone": "live"
@@ -152,7 +153,7 @@
     ],
     "links": {
       "demo": "https://dev-pilot-ai.vercel.app/",
-      "source": "https://github.com/Rajhalder123/DevPilot-AI"
+      "source": "https://github.com/rajhalderdev-hub/DevPilot-AI"
     }
   },
   {
@@ -162,6 +163,7 @@
     "caseStudy": true,
     "confidential": true,
     "tagline": "Live trading terminal, CRM and real-time market data",
+    "category": "FinTech / Real-Time Systems",
     "status": {
       "label": "Live · production",
       "tone": "live"
@@ -327,6 +329,7 @@
     "featured": true,
     "caseStudy": true,
     "tagline": "Computer-vision API that masks Aadhaar numbers",
+    "category": "AI / Computer Vision",
     "status": {
       "label": "Live",
       "tone": "live"
@@ -418,19 +421,20 @@
     },
     "links": {
       "demo": "https://aadhaar-mask-detector.vercel.app/",
-      "source": "https://github.com/Rajhalder123/aadhaar-mask-detector-fullstack"
+      "source": "https://github.com/rajhalderdev-hub/aadhaar-mask-detector-fullstack"
     }
   },
   {
     "slug": "ai-verse",
     "title": "AI Verse",
     "featured": false,
-    "tagline": "AI tools for developers and students",
+    "tagline": "AI developer tools & code analyzer",
+    "category": "AI / Developer Tools",
     "status": {
       "label": "Live",
       "tone": "live"
     },
-    "summary": "A suite of AI tools: chatbot, text summarizer, code explainer and a JavaScript MCQ exam. Version two adds a live HTML/CSS/JS editor with AI code explanation.",
+    "summary": "A developer tool suite featuring an AI-assisted Monaco code editor with real-time execution, automated AI code explanation, and technical assessment modules.",
     "problem": "Students and developers switch between separate AI tools to explain code, summarise notes and practise questions.",
     "built": "Version one is a React app with four AI tools on Gemini 2.0 Flash, PDF input with pdf.js and PDF export with jsPDF. Version two adds a Monaco-based editor with live preview and an Express API that calls Groq's Llama 3.3 70B to explain code.",
     "stack": [
@@ -450,11 +454,11 @@
     },
     "links": {
       "demo": "https://ai-verse-psi.vercel.app/",
-      "source": "https://github.com/Rajhalder123/AI-Verse-FRONTEND",
+      "source": "https://github.com/rajhalderdev-hub/AI-Verse-FRONTEND",
       "extra": [
         {
           "label": "API source",
-          "href": "https://github.com/Rajhalder123/AI-verse-BACKEND"
+          "href": "https://github.com/rajhalderdev-hub/AI-verse-BACKEND"
         }
       ]
     }
@@ -520,7 +524,7 @@
     },
     "links": {
       "demo": "https://drive-with-raj.netlify.app/",
-      "source": "https://github.com/Rajhalder123/halder-car"
+      "source": "https://github.com/rajhalderdev-hub/halder-car"
     }
   },
   {
@@ -549,7 +553,7 @@
     },
     "links": {
       "demo": "https://world-galaxy.netlify.app/",
-      "source": "https://github.com/Rajhalder123/world-galaxy"
+      "source": "https://github.com/rajhalderdev-hub/world-galaxy"
     }
   }
 ]

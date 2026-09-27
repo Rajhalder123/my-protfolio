@@ -147,6 +147,54 @@
       }
     }
   ],
+  "heroBento": [
+    {
+      "id": "ai",
+      "tag": "AI",
+      "title": "AI Products",
+      "subtitle": "AI-powered applications",
+      "detail": "LLM integrations (Groq, Gemini), ATS resume intelligence, and YOLOv8 computer vision.",
+      "metric": "Groq · Llama 3.3 · YOLOv8",
+      "href": "/work/devpilot-ai"
+    },
+    {
+      "id": "fullstack",
+      "tag": "Full Stack",
+      "title": "Full Stack Systems",
+      "subtitle": "Production web applications",
+      "detail": "End-to-end architectures with Next.js, React, Node.js, Express, and Python FastAPI.",
+      "metric": "Next.js · React · Node · Python",
+      "href": "#work"
+    },
+    {
+      "id": "fintech",
+      "tag": "FinTech",
+      "title": "FinTech Platforms",
+      "subtitle": "Trading & financial systems",
+      "detail": "RTX 5 Web Terminal, CRM account flows, KYC, wallets, deposits, and trade lifecycles.",
+      "metric": "Live Trading Terminal · CRM",
+      "href": "https://webterminal.orrnn.com/",
+      "isExternal": true
+    },
+    {
+      "id": "realtime",
+      "tag": "Real-Time",
+      "title": "Real-Time Systems",
+      "subtitle": "WebSockets / live systems",
+      "detail": "Sub-second streaming market feeds, Socket.IO live sessions, and FIX 4.4 protocols.",
+      "metric": "WebSockets · Socket.IO · FIX",
+      "href": "/work/fintech-trading-systems"
+    },
+    {
+      "id": "engineering",
+      "tag": "Engineering",
+      "title": "Core Engineering",
+      "subtitle": "APIs / databases / deployment",
+      "detail": "PostgreSQL, Redis, Docker containers, authentication boundaries, and 502/429 triage.",
+      "metric": "Postgres · Redis · Docker · Nginx",
+      "href": "#experience"
+    }
+  ],
   "toolbox": [
     {
       "id": "frontend",
@@ -172,14 +220,6 @@
         {
           "name": "Tailwind CSS",
           "icon": "tailwindcss"
-        },
-        {
-          "name": "HTML",
-          "icon": "html5"
-        },
-        {
-          "name": "CSS",
-          "icon": "css3"
         }
       ]
     },
@@ -203,23 +243,12 @@
         {
           "name": "FastAPI",
           "icon": "fastapi"
-        },
-        {
-          "name": "Socket.IO",
-          "icon": "socketio",
-          "invert": true
-        },
-        {
-          "name": "REST APIs"
-        },
-        {
-          "name": "WebSockets"
         }
       ]
     },
     {
-      "id": "data",
-      "label": "Databases",
+      "id": "database",
+      "label": "Database",
       "items": [
         {
           "name": "PostgreSQL",
@@ -237,62 +266,81 @@
           "name": "Prisma",
           "icon": "prisma",
           "invert": true
-        },
-        {
-          "name": "SQL"
         }
       ]
     },
     {
-      "id": "ai",
-      "label": "AI / ML",
+      "id": "systems",
+      "label": "Systems",
       "items": [
         {
-          "name": "LLM APIs (Groq, Gemini, OpenAI-compatible)"
+          "name": "REST APIs"
         },
         {
-          "name": "PyTorch",
-          "icon": "pytorch"
+          "name": "WebSockets"
         },
         {
-          "name": "OpenCV",
-          "icon": "opencv"
-        },
-        {
-          "name": "YOLOv8"
-        }
-      ]
-    },
-    {
-      "id": "delivery",
-      "label": "Delivery",
-      "items": [
-        {
-          "name": "Git",
-          "icon": "git"
-        },
-        {
-          "name": "GitHub",
-          "icon": "github",
+          "name": "Socket.IO",
+          "icon": "socketio",
           "invert": true
         },
         {
+          "name": "Authentication (JWT / OAuth)"
+        },
+        {
+          "name": "Caching & Queues"
+        },
+        {
+          "name": "FIX 4.4"
+        }
+      ]
+    },
+    {
+      "id": "devops",
+      "label": "DevOps",
+      "items": [
+        {
           "name": "Docker",
           "icon": "docker"
+        },
+        {
+          "name": "CI/CD"
         },
         {
           "name": "Nginx",
           "icon": "nginx"
         },
         {
-          "name": "Linux",
+          "name": "Linux / VPS",
           "icon": "linux",
           "invert": true
         },
         {
-          "name": "Vercel",
+          "name": "Vercel / Render",
           "icon": "vercel",
           "invert": true
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "label": "AI",
+      "items": [
+        {
+          "name": "LLM APIs (Groq, Gemini)"
+        },
+        {
+          "name": "AI Applications"
+        },
+        {
+          "name": "Computer Vision (YOLOv8, OpenCV)"
+        },
+        {
+          "name": "PyTorch",
+          "icon": "pytorch"
+        },
+        {
+          "name": "AI Developer Tools"
         }
       ]
     }
@@ -308,9 +356,6 @@
       "icon": "cplusplus"
     },
     {
-      "name": "FIX 4.4"
-    },
-    {
       "name": "RTX5 / MT5 ecosystem"
     }
   ],
@@ -320,10 +365,10 @@
       "icon": "go"
     },
     {
-      "name": "System design"
+      "name": "Distributed System Design"
     },
     {
-      "name": "Scalable real-time architecture"
+      "name": "Scalable Real-Time Event Architecture"
     }
   ]
 }

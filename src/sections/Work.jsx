@@ -9,32 +9,52 @@ export default function Work() {
       <div className="container-page">
         <SectionHeader
           id="work-title"
-          eyebrow="Selected work"
-          title="Products and systems I've built"
-          lede="Three case studies cover the problem, the architecture and the engineering decisions. Smaller projects follow below."
+          eyebrow="Featured Projects"
+          title="Production Systems & AI Products"
+          lede="Architected and built across AI, FinTech, and real-time environments. Every project emphasizes clean code, API type safety, and real-world utility."
         />
 
-        <div className="mt-12 grid gap-4 lg:grid-cols-12 lg:gap-5">
+        {/* Featured Projects Grid */}
+        <div className="mt-12 grid gap-5 lg:grid-cols-12">
+          {/* Flagship AI: DevPilot AI (8 cols) */}
           <FlagshipTile project={getProject('devpilot-ai')} className="reveal lg:col-span-8" />
+
+          {/* Production FinTech & Trading Systems: YoForex (4 cols) */}
           <PrivateTile project={getProject('fintech-trading-systems')} className="reveal lg:col-span-4" />
+
+          {/* AI & Computer Vision: Aadhaar Mask Detector (12 cols) */}
           <WideTile project={getProject('aadhaar-mask-detector')} className="reveal lg:col-span-12" />
         </div>
 
-        <div className="reveal mt-16 flex flex-wrap items-end justify-between gap-4">
+        {/* Secondary Projects Section */}
+        <div className="reveal mt-16 flex flex-wrap items-end justify-between gap-4 border-t border-rule pt-12">
           <div>
-            <h3 className="h-card text-xl sm:text-2xl">More projects</h3>
-            <p className="mt-1 text-sm text-fog">Smaller builds across AI, real-time and full-stack web.</p>
+            <p className="eyebrow">Developer Tools & Web Applications</p>
+            <h3 className="h-card mt-2 text-xl text-paper sm:text-2xl">Additional Projects</h3>
+            <p className="mt-1 text-xs text-fog sm:text-sm">
+              AI code analyzers, WebSockets chat applications, and full-stack MERN systems.
+            </p>
           </div>
-          <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="text-link">
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-secondary btn-sm"
+          >
             <Icon name="github" />
-            All repositories on GitHub
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span>View All Repositories</span>
+            <Icon name="arrowUpRight" className="h-3.5 w-3.5" />
           </a>
         </div>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {moreProjects.map((p, i) => (
-            <ProjectCard key={p.slug} project={p} className="reveal" style={{ '--d': `${i * 60}ms` }} />
+            <ProjectCard
+              key={p.slug}
+              project={p}
+              className="reveal"
+              style={{ '--d': `${i * 60}ms` }}
+            />
           ))}
         </div>
       </div>

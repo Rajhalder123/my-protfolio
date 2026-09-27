@@ -10,7 +10,7 @@ import Contact from '../sections/Contact';
 export default function Home() {
   usePageMeta({
     description:
-      'Raj Halder is a Full Stack Engineer in Kolkata building AI-powered products and production systems with React, Next.js, TypeScript, Node.js and Python.',
+      'Raj Halder is an AI / Full Stack Engineer building production-grade web applications, AI products, FinTech platforms, and real-time systems with React, Next.js, TypeScript, Node.js, and Python.',
   });
   useReveal('home');
 

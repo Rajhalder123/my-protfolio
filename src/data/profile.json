@@ -1,41 +1,53 @@
 {
   "name": "Raj Halder",
-  "role": "Full Stack Engineer",
+  "role": "AI / Full Stack Engineer",
   "positioning": [
-    "AI",
-    "Web",
-    "Production Systems"
+    "AI Products",
+    "Full Stack",
+    "FinTech & Real-Time"
   ],
-  "headline": "Full Stack Engineer building AI-powered products and production systems.",
+  "headline": "AI / Full Stack Engineer building production-grade web applications, AI products, FinTech platforms, and real-time systems.",
+  "tagline": "Building production-grade web applications, AI products, FinTech platforms, CRM systems, and real-time applications.",
   "stackLine": [
     "React",
     "Next.js",
     "TypeScript",
     "Node.js",
     "Python",
-    "AI",
-    "Databases",
-    "Cloud"
+    "FastAPI",
+    "PostgreSQL",
+    "MongoDB",
+    "Redis",
+    "Docker"
+  ],
+  "heroStack": [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "AI"
   ],
   "location": "Kolkata, West Bengal, India",
   "locationShort": "Kolkata, India",
-  "workPreference": "remote roles or major Indian tech hubs",
+  "workPreference": "remote roles, hybrid, or relocation to major tech hubs",
   "availability": {
     "open": true,
-    "summary": "Open to full stack and software engineering roles",
+    "summary": "Available for AI / Full Stack Engineer roles",
+    "badge": "Available for new opportunities",
     "roles": [
-      "Full Stack Engineer",
+      "AI / Full Stack Engineer",
       "Software Engineer",
-      "Frontend Engineer (React / Next.js)",
-      "AI-focused Software Engineer"
+      "Full Stack Engineer (React / Next.js / Node.js)",
+      "Backend / Systems Engineer (Python / FastAPI / Node.js)"
     ],
-    "companies": "Product companies, strong engineering teams and AI-focused companies",
+    "companies": "Product companies, high-growth startups, FinTech & AI-focused engineering teams",
     "noticePeriod": "15 days"
   },
   "current": {
     "role": "Software Engineer",
     "company": "YoForex",
-    "domain": "FinTech / trading platform"
+    "domain": "FinTech / Trading Platform"
   },
   "education": {
     "degree": "B.Tech in Information Technology",
@@ -53,36 +65,41 @@
   ],
   "email": "rajhalder.dev@gmail.com",
   "links": {
-    "github": "https://github.com/Rajhalder123",
-    "githubUser": "Rajhalder123",
-    "linkedin": "https://www.linkedin.com/in/raj-halder-2279a1266/",
+    "github": "https://github.com/rajhalderdev-hub",
+    "githubUser": "rajhalderdev-hub",
+    "linkedin": "https://linkedin.com/in/raj-halder-2279a126/",
     "site": "https://raj-protfolio.netlify.app"
   },
   "about": [
-    "I'm a full stack engineer in Kolkata. I work across the whole path of a feature: the React and Next.js interface, the Node.js or Python service behind it, the PostgreSQL or MongoDB data underneath, and the deployment and debugging that keep it running.",
-    "At YoForex I build and support production FinTech software: the CRM behind client accounts and money movement, trading interfaces, real-time market data and trading analytics. I joined as a web developer; the role has grown into technical ownership across projects and teams.",
-    "Outside work I build AI products end to end. The largest is DevPilot AI, a career co-pilot for developers with a Next.js front end, an Express and TypeScript API, and LLM features on Groq."
+    "I am an AI / Full Stack Engineer in Kolkata with experience building production web applications, FinTech platforms, and end-to-end AI products.",
+    "At YoForex, I engineer core trading and FinTech software: from client-facing trading interfaces (RTX 5 Web Terminal) and real-time market data over WebSockets, to CRM workflows, authentication, wallet and deposit/withdrawal systems, PostgreSQL/Redis backends, and production issue resolution across gateways and services.",
+    "Outside work, I develop full-stack AI products end-to-end. I created DevPilot AI, a developer career co-pilot featuring ATS resume analysis, GitHub code evaluation, voice-driven mock interviews, and automated job readiness scoring."
   ],
   "principles": [
     {
-      "title": "Understand the problem",
-      "detail": "Who uses it, what breaks today, and what done looks like."
+      "step": "1",
+      "title": "Understand & Architect",
+      "detail": "Clarify user requirements, analyze data flow, and design the simplest scalable architecture with well-defined service and trust boundaries."
     },
     {
-      "title": "Design the simplest architecture",
-      "detail": "Fewest moving parts that meet the real constraints."
+      "step": "2",
+      "title": "Build & Integrate",
+      "detail": "Develop responsive, modular React and Next.js interfaces paired with robust, type-safe APIs in Node.js/Express and Python/FastAPI."
     },
     {
-      "title": "Build incrementally",
-      "detail": "Small, reviewable changes that ship behind working flows."
+      "step": "3",
+      "title": "Real-Time & Resilience",
+      "detail": "Implement WebSockets and streaming channels for sub-second data propagation, state management, and reliable queue reconciliation."
     },
     {
-      "title": "Test real user flows",
-      "detail": "Auth, money movement and failure paths before the happy path."
+      "step": "4",
+      "title": "Test Critical Paths",
+      "detail": "Rigourously test authentication, financial state transitions, rate limits, and edge failure modes before the happy path."
     },
     {
-      "title": "Ship, monitor, improve",
-      "detail": "Watch production, trace issues to the root cause, fix it properly."
+      "step": "5",
+      "title": "Deploy, Monitor & Improve",
+      "detail": "Containerize with Docker, deploy to production, inspect telemetry and runtime logs, trace HTTP 429/502 bottlenecks, and debug to root cause."
     }
   ]
 }

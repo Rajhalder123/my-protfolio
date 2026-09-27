@@ -18,18 +18,21 @@ function CapabilityCard({ cap, className, style }) {
           decoding="async"
           className="h-full w-full object-cover opacity-70 saturate-[0.8]"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-graphite/10 via-graphite/40 to-graphite" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-b from-graphite/10 via-graphite/40 to-graphite"
+        />
       </div>
       <div className="relative -mt-6 flex flex-1 flex-col px-5 pb-5 sm:px-6 sm:pb-6">
-        <h3 className="h-card">{cap.title}</h3>
-        <p className="mt-2 text-[0.95rem] leading-relaxed text-fog">{cap.body}</p>
+        <h3 className="h-card text-lg text-paper sm:text-xl">{cap.title}</h3>
+        <p className="mt-2 text-xs leading-relaxed text-fog sm:text-[0.88rem]">{cap.body}</p>
         <Chips items={cap.stack} className="mt-4" />
         <div className="mt-auto pt-5">
-          <p className="label">Where I've done it</p>
+          <p className="label">Production & Project Proof</p>
           <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1.5">
             {cap.proof.map((p) => (
               <li key={p.label}>
-                <SmartLink href={p.href} className="text-link">
+                <SmartLink href={p.href} className="text-link text-xs sm:text-sm">
                   {p.label}
                   <Icon name="arrowRight" className="h-3.5 w-3.5" />
                 </SmartLink>
@@ -48,62 +51,91 @@ export default function Capabilities() {
       <div className="container-page">
         <SectionHeader
           id="capabilities-title"
-          eyebrow="Capabilities & stack"
-          title="What I build, and where I've built it"
-          lede="Five areas of work, each linked to the role or project that backs it up."
+          eyebrow="Technical Stack & Architecture"
+          title="Full Stack, AI & Systems Toolbox"
+          lede="Organized by engineering layer. Practical production experience backing every listed technology."
         />
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-12 lg:gap-5">
-          {skills.capabilities.map((cap, i) => (
-            <CapabilityCard
-              key={cap.id}
-              cap={cap}
-              className={`reveal ${SPANS[i]} ${i === 4 ? 'md:col-span-2 lg:col-span-4' : ''}`}
-              style={{ '--d': `${(i % 3) * 60}ms` }}
-            />
+        {/* 6-Group Tech Stack Bento Grid (Section 11) */}
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {skills.toolbox.map((group, i) => (
+            <SpotlightCard
+              key={group.id}
+              className="reveal flex flex-col p-5 sm:p-6"
+              style={{ '--d': `${i * 60}ms` }}
+            >
+              <div className="flex items-center justify-between">
+                <span className="tag-badge">{group.label}</span>
+                <span className="font-mono text-[0.65rem] text-dim">Layer 0{i + 1}</span>
+              </div>
+
+              <h4 className="font-wide mt-3 text-lg font-semibold text-paper sm:text-xl">
+                {group.label}
+              </h4>
+
+              <ul className="mt-4 flex-1 space-y-2.5">
+                {group.items.map((item) => (
+                  <li key={item.name} className="flex items-center">
+                    <TechIcon item={item} size={18} />
+                  </li>
+                ))}
+              </ul>
+            </SpotlightCard>
           ))}
         </div>
 
-        <div className="reveal mt-16">
-          <h3 className="h-card text-xl sm:text-2xl">Toolbox</h3>
-          <p className="mt-1 text-sm text-fog">Tools I use, grouped by layer. Evidence for each is in the work above.</p>
-
-          <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-rule bg-rule lg:grid-cols-5 [&>*:last-child:nth-child(odd)]:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1">
-            {skills.toolbox.map((group) => (
-              <div key={group.id} className="bg-graphite p-4 sm:p-5">
-                <h4 className="label">{group.label}</h4>
-                <ul className="mt-4 space-y-3">
-                  {group.items.map((item) => (
-                    <li key={item.name}>
-                      <TechIcon item={item} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+        {/* Additional Specialized Work & Ongoing Learning */}
+        <div className="reveal mt-6 grid gap-4 md:grid-cols-2">
+          <div className="card p-5 sm:p-6">
+            <div className="flex items-center justify-between">
+              <h4 className="label text-signal">Also Used in Production</h4>
+              <span className="font-mono text-xs text-dim">YoForex</span>
+            </div>
+            <p className="mt-1 text-xs text-fog">Infrastructure and gateway services integration:</p>
+            <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2.5">
+              {skills.alsoAtWork.map((item) => (
+                <li key={item.name}>
+                  <TechIcon item={item} size={18} />
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <div className="card p-5">
-              <h4 className="label">Also used at work</h4>
-              <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
-                {skills.alsoAtWork.map((item) => (
-                  <li key={item.name}>
-                    <TechIcon item={item} />
-                  </li>
-                ))}
-              </ul>
+          <div className="card p-5 sm:p-6">
+            <div className="flex items-center justify-between">
+              <h4 className="label text-signal">Active Engineering Research</h4>
+              <span className="font-mono text-xs text-dim">Growth</span>
             </div>
-            <div className="card p-5">
-              <h4 className="label">Learning now</h4>
-              <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
-                {skills.learning.map((item) => (
-                  <li key={item.name}>
-                    <TechIcon item={item} />
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p className="mt-1 text-xs text-fog">Currently deepening distributed systems and concurrency:</p>
+            <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2.5">
+              {skills.learning.map((item) => (
+                <li key={item.name}>
+                  <TechIcon item={item} size={18} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Applied Engineering Domains with Real Proof */}
+        <div className="mt-20 border-t border-rule pt-16">
+          <div className="mb-8">
+            <p className="eyebrow">Practical Domain Experience</p>
+            <h3 className="h-card mt-2 text-2xl text-paper sm:text-3xl">Where I've Applied These Technologies</h3>
+            <p className="mt-1 text-xs text-fog sm:text-sm">
+              Five concrete operational domains backed by shipping applications and production systems.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-12 lg:gap-5">
+            {skills.capabilities.map((cap, i) => (
+              <CapabilityCard
+                key={cap.id}
+                cap={cap}
+                className={`reveal ${SPANS[i]} ${i === 4 ? 'md:col-span-2 lg:col-span-4' : ''}`}
+                style={{ '--d': `${(i % 3) * 60}ms` }}
+              />
+            ))}
           </div>
         </div>
       </div>

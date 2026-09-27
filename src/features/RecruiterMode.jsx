@@ -77,16 +77,21 @@ export default function RecruiterMode({ onClose }) {
         <div className="flex-1 overflow-y-auto overscroll-contain">
           <div className="grid grid-cols-2 gap-2 px-5 pb-5 sm:px-6">
             <a href={resumeUrl} download={RESUME_FILENAME} className="btn btn-primary col-span-2">
-              <Icon name="download" />
-              Download resume
+              <Icon name="download" className="nudge-down h-4 w-4" />
+              Download Resume
             </a>
-            <a href={mailto} className="btn btn-secondary">
+            <a href={mailto} className="btn btn-secondary btn-sm">
               <Icon name="mail" />
               Email
             </a>
-            <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+            <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-sm">
               <Icon name="linkedin" />
               LinkedIn
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-sm col-span-2">
+              <Icon name="github" />
+              GitHub Profile
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </div>
