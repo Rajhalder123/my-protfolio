@@ -4,7 +4,7 @@ import Icon from '../ui/Icon';
 import { Monogram } from './Navbar';
 
 export default function Footer() {
-  const { open } = useUI();
+  const { open, theme, toggleTheme } = useUI();
   const year = new Date().getFullYear();
 
   return (
@@ -48,6 +48,14 @@ export default function Footer() {
           </div>
           <div className="flex flex-col gap-3">
             <span className="label">Extras</span>
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 text-left text-fog hover:text-paper"
+              onClick={toggleTheme}
+            >
+              <span>Theme: {theme === 'dark' ? 'Dark' : 'Light'}</span>
+              <Icon name={theme === 'dark' ? 'sun' : 'moon'} className="h-3.5 w-3.5 text-signal" />
+            </button>
             <button
               type="button"
               className="inline-flex items-center gap-2 text-left text-fog hover:text-paper"

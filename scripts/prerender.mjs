@@ -61,7 +61,7 @@ const site = profile.links.site;
 const escapeAttr = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const escapeText = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
-function withMeta(html, { title, description, url, robots }) {
+function withMeta(html, { title, description, url, robots, extraSchema }) {
   let out = html
     .replace(/<title>[^<]*<\/title>/, `<title>${escapeText(title)}</title>`)
     .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${escapeAttr(url)}$2`)
@@ -73,6 +73,12 @@ function withMeta(html, { title, description, url, robots }) {
     out = out.replace(new RegExp(`(<meta ${key} content=")[^"]*(")`), `$1${escapeAttr(title)}$2`);
   }
   out = out.replace(/(<meta name="robots" content=")[^"]*(")/, `$1${robots || 'index, follow'}$2`);
+  if (extraSchema) {
+    out = out.replace(
+      '</head>',
+      `<script type="application/ld+json">${JSON.stringify(extraSchema)}</script></head>`
+    );
+  }
   return out;
 }
 
@@ -103,9 +109,9 @@ async function write(route, file, meta) {
   console.log(`prerender: ${route || '(app shell)'} -> ${path.relative(buildDir, target)} (${Math.round(html.length / 1024)} KB)`);
 }
 
-const defaultTitle = `${profile.name} — AI / Full Stack Engineer`;
+const defaultTitle = `${profile.name} — AI & Full Stack Engineer | React, Next.js, Python`;
 const defaultDescription =
-  'Raj Halder is an AI / Full Stack Engineer building production-grade web applications, AI products, FinTech platforms, and real-time systems with React, Next.js, TypeScript, Node.js, and Python.';
+  'Portfolio of Raj Halder: AI & Full Stack Software Engineer building production web applications, FinTech trading systems, and LLM architectures with React, Next.js, TypeScript, Node.js, and Python.';
 
 // Unknown URLs get the empty shell (served with a 404 status via _redirects).
 await write(null, 'app-shell.html', {
@@ -118,10 +124,43 @@ await write(null, 'app-shell.html', {
 await write('/', 'index.html', { title: defaultTitle, description: defaultDescription, url: `${site}/` });
 
 for (const p of projects.filter((x) => x.caseStudy)) {
+  const caseUrl = `${site}/work/${p.slug}`;
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+      { '@type': 'ListItem', position: 2, name: 'Selected Work', item: `${site}/#work` },
+      { '@type': 'ListItem', position: 3, name: p.title, item: caseUrl },
+    ],
+  };
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: `${p.title}: Engineering Case Study`,
+    name: `${p.title} Case Study`,
+    description: `${p.tagline}. ${p.summary}`,
+    url: caseUrl,
+    inLanguage: 'en-US',
+    author: {
+      '@type': 'Person',
+      name: profile.name,
+      url: `${site}/`,
+    },
+    publisher: {
+      '@type': 'Person',
+      name: profile.name,
+      url: `${site}/`,
+    },
+    keywords: (p.stack || []).join(', '),
+  };
+
   // work/<slug>.html: Netlify serves it at /work/<slug> with no trailing-slash redirect.
   await write(`/work/${p.slug}`, path.join('work', `${p.slug}.html`), {
-    title: `${p.title}: case study — ${profile.name}`,
+    title: `${p.title}: Case Study — ${profile.name}`,
     description: `${p.tagline}. ${p.summary}`,
-    url: `${site}/work/${p.slug}`,
+    url: caseUrl,
+    extraSchema: [breadcrumbSchema, articleSchema],
   });
 }

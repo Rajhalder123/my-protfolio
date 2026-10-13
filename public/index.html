@@ -4,41 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Raj Halder — AI / Full Stack Engineer</title>
+    <title>Raj Halder — AI &amp; Full Stack Engineer | React, Next.js, Python</title>
     <meta
       name="description"
-      content="Raj Halder is an AI / Full Stack Engineer building production-grade web applications, AI products, FinTech platforms, and real-time systems with React, Next.js, TypeScript, Node.js, and Python."
+      content="Raj Halder is an AI &amp; Full Stack Engineer building production-grade web applications, AI products, FinTech trading systems, and real-time platforms with React, Next.js, TypeScript, Node.js, and Python."
+    />
+    <meta
+      name="keywords"
+      content="Raj Halder, AI Engineer, Full Stack Engineer, Full Stack Developer, React, Next.js, TypeScript, Node.js, Python, FastAPI, FinTech software engineer, Kolkata, WebSockets, Docker, Machine Learning, Portfolio"
     />
     <meta name="author" content="Raj Halder" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#07090D" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="referrer" content="origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="geo.region" content="IN-WB" />
+    <meta name="geo.placename" content="Kolkata" />
+    <meta name="theme-color" content="#F8FAFC" />
+    <meta name="color-scheme" content="light dark" />
     <link rel="canonical" href="https://raj-protfolio.netlify.app/" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('portfolio-theme');
+          var theme = saved ? saved : 'light';
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <meta name="google-site-verification" content="qa3Kpr2oTNXC19386okUh7dI0ZLDtz5KAfiEckWMfQU" />
 
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Raj Halder" />
-    <meta property="og:title" content="Raj Halder — AI / Full Stack Engineer" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Raj Halder — AI &amp; Full Stack Engineer | React, Next.js, Python" />
     <meta
       property="og:description"
-      content="Building production-grade web applications, AI products, FinTech platforms, CRM systems, and real-time applications."
+      content="Raj Halder is an AI &amp; Full Stack Engineer building production-grade web applications, AI products, FinTech trading systems, and real-time platforms with React, Next.js, TypeScript, Node.js, and Python."
     />
     <meta property="og:url" content="https://raj-protfolio.netlify.app/" />
     <meta property="og:image" content="https://raj-protfolio.netlify.app/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Raj Halder, AI / Full Stack Engineer, building production web applications, AI products, and real-time systems" />
+    <meta property="og:image:alt" content="Raj Halder — AI &amp; Full Stack Engineer Portfolio" />
     <meta property="profile:first_name" content="Raj" />
     <meta property="profile:last_name" content="Halder" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Raj Halder — AI / Full Stack Engineer" />
+    <meta name="twitter:title" content="Raj Halder — AI &amp; Full Stack Engineer | React, Next.js, Python" />
     <meta
       name="twitter:description"
-      content="Building production-grade web applications, AI products, FinTech platforms, CRM systems, and real-time applications."
+      content="Raj Halder is an AI &amp; Full Stack Engineer building production-grade web applications, AI products, FinTech trading systems, and real-time platforms with React, Next.js, TypeScript, Node.js, and Python."
     />
     <meta name="twitter:image" content="https://raj-protfolio.netlify.app/og-image.png" />
+    <meta name="twitter:image:alt" content="Raj Halder — AI &amp; Full Stack Engineer Portfolio" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -75,6 +105,11 @@
       }
       html,
       body {
+        background: #f8fafc;
+        color: #0f172a;
+      }
+      html.dark,
+      html.dark body {
         background: #07090d;
         color: #e8ecf3;
       }
@@ -83,42 +118,126 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Raj Halder",
-        "url": "https://raj-protfolio.netlify.app/",
-        "image": "https://raj-protfolio.netlify.app/images/portrait.webp",
-        "jobTitle": "AI / Full Stack Engineer",
-        "email": "mailto:rajhalder.dev@gmail.com",
-        "worksFor": { "@type": "Organization", "name": "YoForex" },
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "Maulana Abul Kalam Azad University of Technology (MAKAUT)"
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Kolkata",
-          "addressRegion": "West Bengal",
-          "addressCountry": "IN"
-        },
-        "sameAs": [
-          "https://github.com/rajhalderdev-hub",
-          "https://linkedin.com/in/raj-halder-2279a126/"
-        ],
-        "knowsAbout": [
-          "React",
-          "Next.js",
-          "TypeScript",
-          "Node.js",
-          "Python",
-          "FastAPI",
-          "PostgreSQL",
-          "MongoDB",
-          "Redis",
-          "WebSockets",
-          "Docker",
-          "LLM applications",
-          "Computer vision",
-          "FinTech and trading systems"
+        "@graph": [
+          {
+            "@type": "ProfilePage",
+            "@id": "https://raj-protfolio.netlify.app/#profilepage",
+            "url": "https://raj-protfolio.netlify.app/",
+            "name": "Raj Halder — AI & Full Stack Engineer Portfolio",
+            "description": "Official engineering portfolio of Raj Halder: AI & Full Stack Software Engineer building production web applications, AI products, FinTech platforms, and real-time systems.",
+            "isPartOf": {
+              "@type": "WebSite",
+              "@id": "https://raj-protfolio.netlify.app/#website",
+              "name": "Raj Halder Portfolio",
+              "url": "https://raj-protfolio.netlify.app/",
+              "publisher": { "@id": "https://raj-protfolio.netlify.app/#person" }
+            },
+            "about": { "@id": "https://raj-protfolio.netlify.app/#person" },
+            "mainEntity": { "@id": "https://raj-protfolio.netlify.app/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://raj-protfolio.netlify.app/#person",
+            "name": "Raj Halder",
+            "alternateName": ["rajhalder", "Raj Halder Dev"],
+            "url": "https://raj-protfolio.netlify.app/",
+            "image": "https://raj-protfolio.netlify.app/images/portrait.webp",
+            "jobTitle": "AI / Full Stack Engineer",
+            "description": "Full Stack & AI Software Engineer with hands-on production experience in high-throughput FinTech trading systems, LLM architectures, and real-time WebSockets applications.",
+            "email": "mailto:rajhalder.dev@gmail.com",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "YoForex",
+              "url": "https://webterminal.orrnn.com/"
+            },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Maulana Abul Kalam Azad University of Technology (MAKAUT)"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Kolkata",
+              "addressRegion": "West Bengal",
+              "addressCountry": "IN"
+            },
+            "hasOccupation": {
+              "@type": "Occupation",
+              "name": "AI & Full Stack Engineer",
+              "occupationLocation": {
+                "@type": "AdministrativeArea",
+                "name": "Kolkata, West Bengal, India"
+              },
+              "skills": "React, Next.js, TypeScript, Node.js, Python, FastAPI, PostgreSQL, Redis, Docker, WebSockets, LLMs, Computer Vision"
+            },
+            "sameAs": [
+              "https://github.com/rajhalderdev-hub",
+              "https://linkedin.com/in/raj-halder-2279a126/"
+            ],
+            "knowsAbout": [
+              "React",
+              "Next.js",
+              "TypeScript",
+              "JavaScript",
+              "Node.js",
+              "Express",
+              "Python",
+              "FastAPI",
+              "PostgreSQL",
+              "MongoDB",
+              "Redis",
+              "Docker",
+              "WebSockets",
+              "Socket.io",
+              "LLM APIs (Groq, Gemini)",
+              "YOLOv8 Computer Vision",
+              "FinTech & Trading Architecture",
+              "CRM Systems",
+              "FIX Protocol"
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://raj-protfolio.netlify.app/#projects",
+            "name": "Featured Engineering Works & Case Studies",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "SoftwareApplication",
+                  "name": "DevPilot AI",
+                  "applicationCategory": "DeveloperApplication",
+                  "operatingSystem": "Web",
+                  "url": "https://raj-protfolio.netlify.app/work/devpilot-ai",
+                  "description": "AI-powered engineering career acceleration and technical interview preparation platform built with Next.js, FastAPI, and Groq LLMs."
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "SoftwareApplication",
+                  "name": "FinTech Trading Systems & RTX 5 Web Terminal",
+                  "applicationCategory": "FinanceApplication",
+                  "operatingSystem": "Web",
+                  "url": "https://raj-protfolio.netlify.app/work/fintech-trading-systems",
+                  "description": "High-throughput live trading web terminal, CRM client area, KYC workflows, and real-time market data streaming."
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "SoftwareApplication",
+                  "name": "Aadhaar Mask Detector",
+                  "applicationCategory": "SecurityApplication",
+                  "operatingSystem": "Web",
+                  "url": "https://raj-protfolio.netlify.app/work/aadhaar-mask-detector",
+                  "description": "Production computer vision pipeline utilizing YOLOv8 and OpenCV for automated identification number masking and privacy compliance."
+                }
+              }
+            ]
+          }
         ]
       }
     </script>

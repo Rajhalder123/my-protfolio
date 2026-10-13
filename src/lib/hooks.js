@@ -92,7 +92,7 @@ export function useInViewOnce(ref, options) {
   return seen;
 }
 
-const DEFAULT_TITLE = `${profile.name} — Full Stack Engineer | AI & Production Systems`;
+const DEFAULT_TITLE = `${profile.name} — AI & Full Stack Engineer | React, Next.js, Python`;
 
 function setMeta(selector, attr, value) {
   const el = document.head.querySelector(selector);

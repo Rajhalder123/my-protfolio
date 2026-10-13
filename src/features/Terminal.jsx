@@ -31,6 +31,7 @@ const HELP = [
   ['resume', 'download the resume'],
   ['github', 'open the GitHub profile'],
   ['recruiter', 'open recruiter view'],
+  ['theme [light|dark]', 'toggle or set theme'],
   ['clear', 'clear the screen'],
   ['exit', 'close the terminal'],
 ];
@@ -105,6 +106,14 @@ function run(input, ctx) {
     case 'recruiter':
       ctx.open('recruiter');
       return 'Opening recruiter view…';
+    case 'theme': {
+      if (arg === 'light' || arg === 'dark') {
+        ctx.setTheme(arg);
+        return `Theme switched to ${arg} mode.`;
+      }
+      ctx.toggleTheme();
+      return `Theme switched.`;
+    }
     case 'cd':
       if (arg && getProject(arg)?.caseStudy) {
         ctx.navigate(caseStudyPath(arg));
@@ -126,7 +135,7 @@ export default function Terminal({ onClose }) {
   const inputRef = useRef(null);
   const scrollRef = useRef(null);
   const navigate = useNavigate();
-  const { open } = useUI();
+  const { open, theme, setTheme, toggleTheme } = useUI();
   const [lines, setLines] = useState([{ kind: 'sys', text: `Welcome. Type "help" to list commands.` }]);
   const [value, setValue] = useState('');
   const [history, setHistory] = useState([]);
@@ -171,7 +180,7 @@ export default function Terminal({ onClose }) {
         .then((answer) => setLines((prev) => [...prev.filter((l) => !l.pending), { kind: 'out', text: answer }]));
       return;
     }
-    const out = run(input, { navigate, open, close: onClose, download });
+    const out = run(input, { navigate, open, close: onClose, download, theme, setTheme, toggleTheme });
     setLines((prev) => [
       ...prev,
       { kind: 'in', text: input },
@@ -201,9 +210,9 @@ export default function Terminal({ onClose }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="terminal-title"
-        className="pop-enter fixed inset-x-3 bottom-3 z-[80] mx-auto flex h-[min(30rem,80vh)] max-w-2xl flex-col overflow-hidden rounded-xl border border-rule-strong bg-[#05070A] shadow-2xl sm:bottom-10"
+        className="pop-enter fixed inset-x-3 bottom-3 z-[80] mx-auto flex h-[min(30rem,80vh)] max-w-2xl flex-col overflow-hidden rounded-xl border border-rule-strong bg-graphite shadow-2xl sm:bottom-10"
       >
-        <div className="flex items-center justify-between border-b border-rule bg-graphite px-4 py-2.5">
+        <div className="flex items-center justify-between border-b border-rule bg-raised/80 px-4 py-2.5">
           <h2 id="terminal-title" className="flex items-center gap-2 font-mono text-xs text-fog">
             <Icon name="terminal" className="h-4 w-4" />
             terminal · raj@portfolio
@@ -225,7 +234,7 @@ export default function Terminal({ onClose }) {
             <pre
               key={i}
               className={`whitespace-pre-wrap break-words font-mono ${
-                l.kind === 'in' ? 'mt-2 text-paper' : l.kind === 'err' ? 'text-[#F28B82]' : l.kind === 'sys' ? 'text-dim' : 'text-fog'
+                l.kind === 'in' ? 'mt-2 text-paper' : l.kind === 'err' ? 'text-rose-600 dark:text-[#F28B82]' : l.kind === 'sys' ? 'text-dim' : 'text-fog'
               }`}
             >
               {l.kind === 'in' ? (
@@ -239,7 +248,7 @@ export default function Terminal({ onClose }) {
           ))}
         </div>
 
-        <form onSubmit={submit} className="flex items-center gap-2 border-t border-rule px-4 py-3 transition-colors focus-within:bg-raised/60">
+        <form onSubmit={submit} className="flex items-center gap-2 border-t border-rule bg-ink/40 px-4 py-3 transition-colors focus-within:bg-raised/60">
           <label htmlFor="terminal-input" className="shrink-0 font-mono text-[0.8rem] text-signal">
             {PROMPT}
           </label>

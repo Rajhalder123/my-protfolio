@@ -7,7 +7,7 @@ export default function About() {
   const facts = [
     { icon: 'mapPin', label: 'Location', value: profile.location, detail: `Open to ${profile.workPreference}` },
     { icon: 'cap', label: 'Education', value: `${e.degree} (2025)`, detail: `${e.school} · CGPA ${e.cgpa}` },
-    ...profile.training.map((t) => ({ icon: 'file', label: 'Specialized Training', value: t.name, detail: t.provider })),
+    ...(profile.training || []).map((t) => ({ icon: 'file', label: 'Specialized Training', value: t.name, detail: t.provider })),
     {
       icon: 'briefcase',
       label: 'Target Roles',

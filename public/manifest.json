@@ -1,0 +1,24 @@
+{
+  "short_name": "Raj Halder",
+  "name": "Raj Halder — AI & Full Stack Engineer",
+  "description": "Portfolio of Raj Halder: AI & Full Stack Engineer building production web applications, AI products, FinTech platforms, and real-time systems.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#F8FAFC",
+  "theme_color": "#F8FAFC",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "categories": ["portfolio", "technology", "development"]
+}

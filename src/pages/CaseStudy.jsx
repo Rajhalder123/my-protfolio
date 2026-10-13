@@ -81,7 +81,7 @@ export default function CaseStudy() {
 
   usePageMeta(
     valid
-      ? { title: `${project.title}: case study`, description: `${project.tagline}. ${project.summary}`, path: caseStudyPath(slug) }
+      ? { title: `${project.title}: Case Study`, description: `${project.tagline}. ${project.summary}`, path: caseStudyPath(slug) }
       : { title: 'Page not found' }
   );
   useReveal(slug);

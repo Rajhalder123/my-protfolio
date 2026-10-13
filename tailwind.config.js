@@ -1,20 +1,30 @@
 /** @type {import('tailwindcss').Config} */
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgb(var(${variableName}) / ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+}
+
 module.exports = {
+  darkMode: 'class',
   content: ['./src/**/*.{js,jsx}'],
   theme: {
     extend: {
       colors: {
-        ink: '#07090D',
-        graphite: '#0E1117',
-        raised: '#131722',
-        rule: '#1C2230',
-        'rule-strong': '#2A3242',
-        paper: '#E8ECF3',
-        fog: '#99A1B3',
-        dim: '#7C8497',
-        signal: '#5BD8E5',
-        ion: '#9D8CFF',
-        go: '#43D492',
+        ink: withOpacity('--color-ink'),
+        graphite: withOpacity('--color-graphite'),
+        raised: withOpacity('--color-raised'),
+        rule: withOpacity('--color-rule'),
+        'rule-strong': withOpacity('--color-rule-strong'),
+        paper: withOpacity('--color-paper'),
+        fog: withOpacity('--color-fog'),
+        dim: withOpacity('--color-dim'),
+        signal: withOpacity('--color-signal'),
+        ion: withOpacity('--color-ion'),
+        go: withOpacity('--color-go'),
       },
       fontFamily: {
         display: ['Archivo', '"Arial Narrow"', 'system-ui', 'sans-serif'],

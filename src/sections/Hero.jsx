@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { profile, resumeUrl, RESUME_FILENAME, currentJob, skills, caseStudyPath } from '../lib/content';
 import Icon from '../components/ui/Icon';
 import { Magnetic, SpotlightCard } from '../components/ui/primitives';
+import KineticName from '../components/ui/KineticName';
 
 function HeroBento() {
   const cards = skills.heroBento || [
@@ -150,22 +151,9 @@ export default function Hero() {
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           {/* Left Column: Title, Identity, Stack, CTAs */}
           <div className="hero-col lg:col-span-7">
-            {/* Availability Badge */}
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-rule-strong bg-graphite/85 px-3 py-1.5 text-xs text-fog backdrop-blur-md">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="absolute inset-0 rounded-full bg-go opacity-70 motion-safe:animate-ping" />
-                <span className="relative h-2 w-2 rounded-full bg-go" />
-              </span>
-              <span>{profile.availability.summary}</span>
-              <span className="hidden text-rule-strong sm:inline">|</span>
-              <span className="hidden text-dim sm:inline">{profile.availability.noticePeriod} notice</span>
-            </div>
-
             {/* Main Headline */}
-            <h1 id="hero-title" className="mt-6">
-              <span className="hero-name block font-wide font-bold uppercase leading-[0.9] tracking-[-0.02em] text-paper">
-                {profile.name}
-              </span>
+            <h1 id="hero-title">
+              <KineticName name={profile.name} className="hero-name text-paper" />
               <span className="sr-only"> — </span>
               <span className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <span className="font-wide text-2xl font-bold tracking-tight text-paper sm:text-3xl lg:text-[2.2rem]">

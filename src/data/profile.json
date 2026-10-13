@@ -1,13 +1,15 @@
 {
   "name": "Raj Halder",
-  "role": "AI / Full Stack Engineer",
+  "role": "CRM & FinTech Engineer",
+  "eyebrow": "INDEPENDENT ENGINEER · CRM · FINTECH",
+  "title": "Full-Stack Engineer | CRM & Trading Systems | Production Applications",
   "positioning": [
-    "AI Products",
-    "Full Stack",
-    "FinTech & Real-Time"
+    "CRM Platforms",
+    "Trading Integrations & MT5",
+    "Full-Stack Production Systems"
   ],
-  "headline": "AI / Full Stack Engineer building production-grade web applications, AI products, FinTech platforms, and real-time systems.",
-  "tagline": "Building production-grade web applications, AI products, FinTech platforms, CRM systems, and real-time applications.",
+  "headline": "I BUILD THE SYSTEMS THAT POWER FINTECH.",
+  "tagline": "I'm Raj Halder — a full-stack engineer working across CRM platforms, trading integrations, backend infrastructure, and production applications. I turn complex business requirements into reliable software, from the interface to the underlying systems.",
   "stackLine": [
     "React",
     "Next.js",
@@ -16,8 +18,8 @@
     "Python",
     "FastAPI",
     "PostgreSQL",
-    "MongoDB",
     "Redis",
+    "MetaTrader 5",
     "Docker"
   ],
   "heroStack": [
@@ -25,29 +27,30 @@
     "Next.js",
     "TypeScript",
     "Node.js",
-    "Python",
-    "AI"
+    "PostgreSQL",
+    "MT5"
   ],
   "location": "Kolkata, West Bengal, India",
   "locationShort": "Kolkata, India",
-  "workPreference": "remote roles, hybrid, or relocation to major tech hubs",
+  "workPreference": "Remote, international, hybrid, or relocation",
   "availability": {
     "open": true,
-    "summary": "Available for AI / Full Stack Engineer roles",
-    "badge": "Available for new opportunities",
+    "summary": "Available for CRM & FinTech Engineering roles",
+    "badge": "Full-Stack & Acting CTO at YoForex",
     "roles": [
-      "AI / Full Stack Engineer",
-      "Software Engineer",
+      "CRM & FinTech Engineer",
       "Full Stack Engineer (React / Next.js / Node.js)",
-      "Backend / Systems Engineer (Python / FastAPI / Node.js)"
+      "Trading Systems Integration Engineer",
+      "Backend / Systems Engineer (Node.js / Python / PostgreSQL)"
     ],
-    "companies": "Product companies, high-growth startups, FinTech & AI-focused engineering teams",
-    "noticePeriod": "15 days"
+    "companies": "FinTech firms, trading platforms, product companies, and international engineering teams",
+    "noticePeriod": "Immediate / flexible"
   },
   "current": {
-    "role": "Software Engineer",
+    "role": "Full-Stack Engineer & Acting CTO Responsibilities",
     "company": "YoForex",
-    "domain": "FinTech / Trading Platform"
+    "domain": "FinTech / CRM & Trading Infrastructure",
+    "joined": "January 2026"
   },
   "education": {
     "degree": "B.Tech in Information Technology",
@@ -67,39 +70,44 @@
   "links": {
     "github": "https://github.com/rajhalderdev-hub",
     "githubUser": "rajhalderdev-hub",
-    "linkedin": "https://linkedin.com/in/raj-halder-2279a126/",
-    "site": "https://raj-protfolio.netlify.app"
+    "linkedin": "https://www.linkedin.com/in/raj-halder-2279a1266/",
+    "site": "https://my-protfolio-plum-zeta.vercel.app/"
   },
   "about": [
-    "I am an AI / Full Stack Engineer in Kolkata with experience building production web applications, FinTech platforms, and end-to-end AI products.",
-    "At YoForex, I engineer core trading and FinTech software: from client-facing trading interfaces (RTX 5 Web Terminal) and real-time market data over WebSockets, to CRM workflows, authentication, wallet and deposit/withdrawal systems, PostgreSQL/Redis backends, and production issue resolution across gateways and services.",
-    "Outside work, I develop full-stack AI products end-to-end. I created DevPilot AI, a developer career co-pilot featuring ATS resume analysis, GitHub code evaluation, voice-driven mock interviews, and automated job readiness scoring."
+    "I'm Raj Halder, a full-stack engineer focused on CRM platforms, fintech applications, and trading-system integrations.",
+    "At YoForex, I work across frontend interfaces, backend services, APIs, and production delivery while taking on technical leadership responsibilities.",
+    "I enjoy solving problems where business workflows, system reliability, and complex integrations meet."
   ],
   "principles": [
     {
       "step": "1",
-      "title": "Understand & Architect",
-      "detail": "Clarify user requirements, analyze data flow, and design the simplest scalable architecture with well-defined service and trust boundaries."
+      "title": "Understand the Business Problem",
+      "detail": "Deconstruct requirements into functional specifications, operational edge cases, and compliance boundaries."
     },
     {
       "step": "2",
-      "title": "Build & Integrate",
-      "detail": "Develop responsive, modular React and Next.js interfaces paired with robust, type-safe APIs in Node.js/Express and Python/FastAPI."
+      "title": "Design System & Data Flow",
+      "detail": "Architect schema models, entity relations, and service boundaries with clear trust lines."
     },
     {
       "step": "3",
-      "title": "Real-Time & Resilience",
-      "detail": "Implement WebSockets and streaming channels for sub-second data propagation, state management, and reliable queue reconciliation."
+      "title": "Build Frontend & Backend",
+      "detail": "Develop responsive, modular React and Next.js interfaces paired with robust, type-safe APIs in Node.js and Python."
     },
     {
       "step": "4",
-      "title": "Test Critical Paths",
-      "detail": "Rigourously test authentication, financial state transitions, rate limits, and edge failure modes before the happy path."
+      "title": "Integrate APIs & External Systems",
+      "detail": "Establish resilient bridges to MetaTrader 5 Manager workflows, Redis Pub/Sub channels, and WebSockets."
     },
     {
       "step": "5",
+      "title": "Test Critical User Workflows",
+      "detail": "Stress test authentication boundaries, concurrency conflicts, and worst-case failure modes before releasing."
+    },
+    {
+      "step": "6",
       "title": "Deploy, Monitor & Improve",
-      "detail": "Containerize with Docker, deploy to production, inspect telemetry and runtime logs, trace HTTP 429/502 bottlenecks, and debug to root cause."
+      "detail": "Containerize with Docker, configure reverse proxies, trace HTTP 429/502 bottlenecks, and continuously refine performance."
     }
   ]
 }

@@ -3,3 +3,4 @@ Allow: /
 Disallow: /static/js/*.map
 
 Sitemap: https://raj-protfolio.netlify.app/sitemap.xml
+Host: https://raj-protfolio.netlify.app

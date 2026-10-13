@@ -250,7 +250,7 @@ export default function Contact() {
                     <span className="text-signal font-medium">Opened in Gmail compose with your message pre-filled.</span>
                   )}
                   {status === 'error' && (
-                    <span className="text-[#F28B82]">
+                    <span className="text-rose-600 dark:text-[#F28B82]">
                       Direct send issue. Please{' '}
                       <a
                         className="underline"

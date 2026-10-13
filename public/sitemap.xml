@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://raj-protfolio.netlify.app/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://raj-protfolio.netlify.app/work/devpilot-ai</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://raj-protfolio.netlify.app/work/fintech-trading-systems</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://raj-protfolio.netlify.app/work/aadhaar-mask-detector</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://raj-protfolio.netlify.app/</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://raj-protfolio.netlify.app/images/portrait.webp</image:loc>
+      <image:title>Raj Halder — AI &amp; Full Stack Engineer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://raj-protfolio.netlify.app/og-image.png</image:loc>
+      <image:title>Raj Halder Portfolio Preview</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://raj-protfolio.netlify.app/work/devpilot-ai</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://raj-protfolio.netlify.app/images/devpilot-home.webp</image:loc>
+      <image:title>DevPilot AI — AI-Powered Engineering Career Platform</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://raj-protfolio.netlify.app/work/fintech-trading-systems</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://raj-protfolio.netlify.app/images/rtx-web-terminal.webp</image:loc>
+      <image:title>FinTech Trading Systems &amp; RTX 5 Web Terminal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://raj-protfolio.netlify.app/work/aadhaar-mask-detector</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://raj-protfolio.netlify.app/images/aadhaar.webp</image:loc>
+      <image:title>Aadhaar Mask Detector — YOLOv8 Computer Vision API</image:title>
+    </image:image>
+  </url>
 </urlset>
